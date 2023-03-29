@@ -1,0 +1,197 @@
+.about {
+  height: fit-content;
+  width: 90%;
+  margin: auto;
+  color: $secondary-dark;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  padding-bottom: 10%;
+
+  @include lg-screen {
+    padding-bottom: 12%;
+  }
+
+  @include md-screen {
+    width: 100%;
+  }
+
+  @include sm-screen {
+    margin: 10% auto;
+    padding-top: 5rem;
+  }
+
+  &-header {
+    text-align: center;
+    padding-top: 1rem;
+    margin-bottom: 4.5rem;
+
+    @include lg-screen {
+      padding-bottom: 1.4rem;
+    }
+
+    h2 {
+      font-family: $montserrat;
+      font-size: 2.5rem;
+      position: relative;
+      padding-bottom: 0.4rem;
+      text-transform: uppercase;
+
+      &::after {
+        @include customUnderline($main-gradient, 100px, 5px);
+      }
+    }
+  }
+
+  &-main {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 4.5rem;
+
+    @include lg-screen {
+      grid-gap: 1.5rem;
+    }
+
+    @include md-screen {
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 1.8rem;
+      margin-bottom: 0;
+    }
+
+    @include sm-screen {
+      grid-template-columns: 1fr;
+      grid-gap: 2.5rem;
+      margin-bottom: 0;
+      padding-bottom: 15%;
+    }
+
+    .about-card {
+      height: 35rem;
+      width: 25rem;
+      box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+      background-image: $main-gradient;
+      background-position: center;
+      background-size: 100%;
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 3rem 2rem 0 2rem;
+
+      @include lg-screen {
+        height: 26rem;
+        width: 18rem;
+      }
+
+      @include md-screen {
+        height: 20rem;
+        width: 20rem;
+        padding: 1rem 0.5rem 0.5rem 1rem;
+      }
+
+      @include sm-screen {
+        height: 24rem;
+        width: 22rem;
+        justify-content: space-evenly;
+      }
+
+      @include xs-screen {
+        height: 22rem;
+        width: 18rem;
+      }
+
+      &:last-child {
+        @include md-screen {
+          justify-self: center;
+          grid-column: 1/-1;
+        }
+      }
+
+      &__header {
+        text-align: center;
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: bold;
+          text-transform: uppercase;
+          padding-bottom: 3rem;
+
+          @include lg-screen {
+            padding-bottom: 1.2rem;
+          }
+
+          @include md-screen {
+            font-size: 1.25rem;
+            padding-top: 1.5rem;
+            padding-bottom: 1.5rem;
+          }
+        }
+      }
+
+      &__body {
+        text-align: center;
+
+        @include md-screen {
+          padding-bottom: 0;
+        }
+
+        p {
+          font-size: 1.15rem;
+          padding-bottom: 1.5rem;
+          line-height: 30px;
+          width: 100%;
+
+          a#to_contact {
+            text-decoration: underline;
+            font-weight: bold;
+            color: $black;
+          }
+
+          @include lg-screen {
+            padding-bottom: 0.5rem;
+            line-height: 25px;
+          }
+
+          @include md-screen {
+            font-size: 1rem;
+            padding-bottom: 1rem;
+          }
+
+          @include sm-screen {
+            font-size: 1.2rem;
+            padding-bottom: 1rem;
+          }
+
+          @include xs-screen {
+            font-size: 1rem;
+          }
+        }
+
+        img {
+          width: 75%;
+          height: 75%;
+
+          @include lg-screen {
+            height: 70%;
+          }
+
+          @include md-screen {
+            max-width: 50%;
+            max-height: 50%;
+          }
+        }
+      }
+    }
+  }
+}
+
+// Small Laptop Screens
+
+// Tablet screens
+
+// Large Mobile phones
+
+// Small Mobile Phones

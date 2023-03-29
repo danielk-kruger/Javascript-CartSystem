@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cakey Menu</title>
+
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+      integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./css/menu.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="nav">
+        <a href="index.html">Segredos da Elka</a>
+        <span class="show-cart">
+          <i class="fas fa-cart-plus"></i>
+          <div class="cart-items"></div>
+        </span>
+      </div>
+
+      <div class="content">
+        <h3>Nosso Menu</h3>
+      </div>
+      <div class="gallery"></div>
+    </div>
+    <!-- Cart -->
+    <div class="cart-overlay">
+      <div class="cart">
+        <div class="cart-header">
+          <div class="cart-close"></div>
+          <button class="clear-cart">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="cart-content empty-content">
+          <p id="empty-msg" class="false">No items in cart...</p>
+        </div>
+        <div class="cart-footer empty">
+          <h3>
+            Your Total: <br />
+
+            MT <span class="cart-total">0</span>
+          </h3>
+          <button type="submit">Order</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/contentful@5.0.1/dist/contentful.browser.min.js"></script>
+    <script src="js/cart.js"></script>
+  </body>
+</html>

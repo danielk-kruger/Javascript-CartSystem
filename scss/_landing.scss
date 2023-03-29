@@ -1,0 +1,515 @@
+.navbar {
+  position: absolute;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  font-family: $montserrat;
+  z-index: 10;
+
+  @include md-screen {
+    height: 80px;
+    z-index: 10;
+  }
+
+  &.sticky {
+    background: $white;
+    position: fixed;
+    top: 0;
+    z-index: 30;
+    margin: 0;
+    opacity: 0.75;
+    box-shadow: -8px 0px 12px rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+
+    &.mobileNav {
+      @include md-screen {
+        opacity: 1;
+      }
+
+      .navbar-menu {
+        &__item {
+          &-link {
+            @include md-screen {
+              color: $light-color;
+            }
+          }
+        }
+      }
+    }
+
+    .navbar-logo {
+      font-size: 3rem;
+      background-image: $secondary-gradient;
+    }
+
+    .navbar-menu {
+      &__item {
+        &-link {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &-logo {
+    font-size: 3.5rem;
+    padding-left: 7.5rem;
+    margin-left: 7.5rem;
+    font-family: $comforter-brush;
+    background: #f5efef;
+    background-image: $main-gradient;
+    background-size: 100%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-text-fill-color: transparent;
+
+    @include lg-screen {
+      font-size: 3rem;
+      padding-left: 3.5rem;
+      margin-left: 3.5rem;
+    }
+
+    @include md-screen {
+      margin: 0 auto;
+      padding: 0;
+      font-size: 3rem;
+    }
+  }
+
+  &-toggle {
+    .bar {
+      @include md-screen {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background: $secondary-dark;
+        margin: 5px auto;
+        transition: all 0.4s ease;
+      }
+    }
+
+    &#mobile-menu {
+      @include md-screen {
+        position: absolute;
+        top: 20%;
+        right: 5%;
+        transform: translate(5%, -20%);
+        z-index: 110;
+        cursor: pointer;
+        overflow: hidden;
+        transform: scale(1.1);
+        padding-top: 10px;
+      }
+
+      &.is-active {
+        .bar {
+          @include md-screen {
+            background: $light-color;
+          }
+
+          &:nth-child(2) {
+            opacity: 0;
+          }
+
+          &:nth-child(1) {
+            transform: translateY(8px) rotate(225deg);
+          }
+
+          &:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+          }
+        }
+      }
+    }
+  }
+
+  &-menu {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10rem;
+
+    @include lg-screen {
+      padding-right: 3.5rem;
+    }
+
+    @include md-screen {
+      background: $secondary-dark;
+      position: absolute;
+      flex-direction: column;
+      align-items: center;
+      top: 0;
+      right: 0px;
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      padding: 20px 0px 6rem;
+      transition: all 0.3s ease;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @include sm-screen {
+      padding-bottom: 4rem;
+    }
+
+    &.active {
+      @include md-screen {
+        position: fixed;
+        opacity: 1;
+        pointer-events: visible;
+        z-index: 99;
+        transition: all 0.3s ease;
+        overflow: hidden;
+      }
+    }
+
+    &__item {
+      display: block;
+
+      @include md-screen {
+        padding: 2rem 0;
+      }
+
+      a {
+        font-size: 1.25rem;
+        padding: 5px 35px;
+        text-transform: uppercase;
+        transition: color 0.25s ease;
+
+        @include md-screen {
+          font-size: 2rem;
+        }
+
+        @include sm-screen {
+          font-size: 1.4rem;
+        }
+      }
+
+      #sign-up {
+        background-image: $main-gradient;
+        background-size: auto;
+        background-position: center;
+        color: $secondary-dark;
+        margin: 5px 35px;
+
+        @include lg-screen {
+          margin: 5px 20px;
+        }
+
+        @include md-screen {
+          padding: 1rem 2rem;
+        }
+      }
+
+      &-link {
+        color: $secondary-dark;
+
+        &:hover {
+          color: $light-color;
+        }
+
+        @include md-screen {
+          color: $light-color;
+        }
+      }
+    }
+  }
+}
+
+// NAVBAR END
+
+// LANDING PAGE SECTION
+
+.back-to-top {
+  @include lg-screen {
+    padding: 0.8rem 1.2rem;
+  }
+
+  @include md-screen {
+    display: none;
+    pointer-events: none;
+  }
+}
+
+.container {
+  @include containerStyle(105vh, 100vw);
+  background-image: url('../images/wave-reverse.png');
+  background-position: top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: -1;
+
+  @include md-screen {
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  @include sm-screen {
+    width: 100vw;
+  }
+
+  .landing-text {
+    margin-left: 12%;
+    padding-bottom: 4rem;
+    text-align: center;
+
+    @include lg-screen {
+      margin-left: 8%;
+      padding-bottom: 6rem;
+    }
+
+    @include md-screen {
+      width: 50%;
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, -35%);
+    }
+
+    @include sm-screen {
+      width: 75%;
+      padding-top: 1rem;
+    }
+
+    @include xs-screen {
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -28%);
+    }
+
+    h1 {
+      font-family: $montserrat;
+      font-weight: bold;
+      font-style: italic;
+      text-transform: uppercase;
+      font-size: 2.4rem;
+      padding-right: 0.25rem;
+      background-image: $main-gradient;
+      background-size: 100%;
+      background-position: center;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -moz-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      @include lg-screen {
+        font-size: 1.9rem;
+      }
+
+      @include md-screen {
+        font-size: 2rem;
+      }
+
+      @include sm-screen {
+        font-size: 1.5rem;
+      }
+
+      @include xs-screen {
+        font-size: 1.25rem;
+      }
+    }
+
+    .scroll-down {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 1.2rem 1.8rem;
+      font-size: 1.425rem;
+      text-transform: uppercase;
+      border-radius: 0.5rem;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      background-image: $main-gradient;
+      background-position: center;
+      background-size: 100%;
+      color: $secondary-dark;
+      transition: all 0.35s ease;
+      box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.3);
+      margin-bottom: 0.5rem;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+
+      .fa-book-open {
+        padding-left: 0.25rem;
+      }
+
+      @include md-screen {
+        margin-top: 1.25rem;
+        padding: 1rem 1.2rem;
+        display: block;
+      }
+
+      @include sm-screen {
+        padding: 1rem 1.5rem;
+        display: block;
+      }
+
+      @include xs-screen {
+        padding: 0.625rem 1rem;
+        font-size: 1.25rem;
+      }
+    }
+  }
+
+  .landing-card {
+    margin-right: 12%;
+    margin-top: 17.5%;
+    padding: 2.5rem 1rem;
+    background-image: $main-gradient;
+    background-size: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.3);
+    width: 28rem;
+
+    @include lg-screen {
+      margin-top: 18%;
+      margin-right: 14%;
+      padding: 1rem 0.8rem;
+      width: 24rem;
+    }
+
+    @include md-screen {
+      margin: 0 auto;
+      position: absolute;
+      left: 50%;
+      top: 90%;
+      transform: translate(-50%, -90%);
+      width: 50%;
+      padding: 1rem;
+    }
+
+    @include sm-screen {
+      width: 75%;
+      margin: 0;
+      padding: 1rem 1rem;
+      margin-top: 5%;
+    }
+
+    @include xs-screen {
+      top: 85%;
+      padding: 1rem 0.5rem;
+    }
+
+    &_heading {
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1.8rem;
+
+      @include lg-screen {
+        margin-bottom: 0.5rem;
+      }
+
+      @include md-screen {
+        padding: 0;
+      }
+
+      @include sm-screen {
+        margin-bottom: 1rem;
+      }
+
+      @include xs-screen {
+        padding: 0rem;
+        margin-bottom: 0;
+      }
+
+      h2 {
+        font-family: $comforter-brush;
+        color: $primary-color;
+        font-size: 3.5rem;
+        font-weight: normal;
+        margin-bottom: 0.8rem;
+
+        @include lg-screen {
+          font-size: 3.2rem;
+        }
+
+        @include md-screen {
+          font-size: 2.5rem;
+        }
+      }
+    }
+
+    &_body {
+      text-align: center;
+
+      p {
+        font-size: 1.2rem;
+        padding-bottom: 2rem;
+
+        @include lg-screen {
+          font-size: 1rem;
+          width: 90%;
+          margin: 0 auto;
+          padding-bottom: 1rem;
+        }
+
+        @include md-screen {
+          font-size: 1rem;
+          margin-bottom: 0rem;
+          padding: 1rem;
+        }
+
+        @include sm-screen {
+          padding-bottom: 1rem;
+        }
+
+        @include xs-screen {
+          padding: 0.625rem;
+          font-size: 0.825rem;
+        }
+      }
+
+      a {
+        color: $secondary-dark;
+        font-size: 1.4rem;
+        text-transform: uppercase;
+        @include mainBackground();
+        padding: 1rem 1.4rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+        box-shadow: 1px 2px 10px rgba(0, 0, 0, 0.25);
+        color: $white;
+        display: inline-block;
+
+        &:hover {
+          transform: scale(1.075);
+        }
+
+        @include lg-screen {
+          padding: 0.85rem 1.4rem;
+          font-size: 1.2rem;
+        }
+
+        @include md-screen {
+          padding: 0.5rem 1rem;
+          font-size: 1.2rem;
+          display: block;
+          width: 60%;
+          margin: 0 auto;
+        }
+
+        @include sm-screen {
+          display: block;
+        }
+
+        @include xs-screen {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}

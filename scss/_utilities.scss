@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&family=Montserrat:wght@300;400;500;700&family=Poppins:wght@300;400;500;700&display=swap");
+
+$black: #37323e;
+// $secondary-dark: #303634;
+
+$primary-color: #ce4760;
+$secondary-color: #eec584;
+$tertiary-color: #ead2ac;
+$tertiary-darker: #e3c38c;
+
+$white: #eee;
+$light-color: #d1dede;
+
+$main-gradient: linear-gradient(to top, $secondary-color 0%, #f5efef 100%);
+$secondary-gradient: linear-gradient(to top, #fe5196 0%, #f77062 100%);
+
+// Measurements
+
+$wide-x: 3rem;
+$wide-y: 1.5rem;
+
+$small-x: 2rem;
+$small-y: 0.5rem;
+
+// Fonts
+
+$poppins: "Poppins", sans-serif;
+$montserrat: "Montserrat", sans-serif;
+$comforter-brush: "Comforter Brush", cursive;
+
+// Breakpoints
+
+$xlg-screen-size: 2000px;
+$lg-screen-size: 1400px;
+$md-screen-size: 920px;
+$sm-screen-size: 520px;
+$xs-screen-size: 380px;
+
+@mixin xlg-screen {
+  @media only screen and (max-width: $xlg-screen-size) {
+    @content;
+  }
+}
+
+@mixin lg-screen {
+  @media only screen and (max-width: $lg-screen-size) {
+    @content;
+  }
+}
+
+@mixin md-screen {
+  @media only screen and (max-width: $md-screen-size) {
+    @content;
+  }
+}
+
+@mixin sm-screen {
+  @media only screen and (max-width: $sm-screen-size) {
+    @content;
+  }
+}
+
+@mixin xs-screen {
+  @media only screen and (max-width: $xs-screen-size) {
+    @content;
+  }
+}
+
+// Background Presets
+
+@mixin darkBackground {
+  background-color: $black;
+  border: 2px solid $black;
+  color: $white;
+
+  &:hover {
+    background-color: $secondary-dark;
+    border: 2px solid $secondary-dark;
+    color: $light-color;
+    transform: scale(1.075);
+  }
+}
+
+@mixin mainBackground {
+  background-color: $primary-color;
+  color: $black;
+  border: 2px solid $primary-color;
+
+  &:hover {
+    background-color: $secondary-color;
+    border: 2px solid $secondary-color;
+    transform: scale(1.075);
+  }
+}
+
+@mixin secondaryBackground {
+  background-color: $tertiary-color;
+  color: $black;
+  border: 2px solid $tertiary-color;
+
+  &:hover {
+    background-color: $tertiary-darker;
+    border: 2px solid $tertiary-darker;
+    transform: scale(1.075);
+  }
+}
+
+// Button Presets
+
+@mixin Button($fontSize, $py, $px) {
+  border-radius: 5px;
+  text-align: center;
+  padding: $py $px;
+  font-size: $fontSize;
+  display: inline-block;
+  margin: 20% 30%;
+  transition: all 0.3s ease;
+  box-shadow: 1px 2px 12px rgba($black, 0.2);
+}
+
+@mixin customUnderline($bgcolor, $w, $h) {
+  content: "";
+  width: $w;
+  height: $h;
+  background: $bgcolor;
+  background-size: 100%;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.5rem;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: $poppins;
+  scroll-behavior: smooth;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  background: $light-color;
+  overflow-x: hidden;
+
+  @include sm-screen() {
+    background: #f5efef;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.btn {
+  @include Button(1.1rem, $small-x, $small-y);
+}
+
+.btn-large {
+  @include Button(1.5rem, $wide-x, $wide-y);
+}
+
+@mixin containerStyle($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+.back-to-top {
+  display: block;
+  position: fixed;
+  bottom: 6%;
+  right: 2%;
+  color: #333;
+  font-size: 1.425rem;
+  padding: 0.625rem 1.125rem;
+  border-radius: 50%;
+  background: $secondary-color;
+  box-shadow: 1px 2px 12px rgba(#37323e, 0.1);
+  transition: all 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+
+  &:hover {
+    transform: scale(1.075);
+    // color: $black;
+  }
+
+  &.show {
+    opacity: 0.8;
+    pointer-events: visible;
+  }
+}
