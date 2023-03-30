@@ -507,23 +507,12 @@ body {
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item {
     width: 80%;
-    height: 13rem;
+    height: 20rem;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 0.5rem;
+    grid-row-gap: 0rem;
     grid-column-gap: 0rem;
     position: relative;
-  }
-}
-@media only screen and (max-width: 380px) {
-  .cart-overlay .cart-item {
-    width: 80%;
-    height: fit-content;
-    object-fit: contain;
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    grid-row-gap: 2rem;
-    align-content: center;
   }
 }
 .cart-overlay .cart-item img {
@@ -547,7 +536,7 @@ body {
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item img {
     width: 100%;
-    height: 13rem;
+    height: 12.5rem;
     border-radius: 0.5rem !important;
     border-bottom-right-radius: 0rem !important;
     border-bottom-left-radius: 0rem !important;
@@ -555,14 +544,9 @@ body {
     grid-column: 1/-1;
   }
 }
-@media only screen and (max-width: 380px) {
-  .cart-overlay .cart-item img {
-    width: 100%;
-    height: 12rem;
-  }
-}
 .cart-overlay .cart-item .wrapper {
   width: 100%;
+  height: 7.5rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -580,7 +564,6 @@ body {
 .cart-overlay .cart-item .wrapper div {
   width: 100%;
   text-align: center;
-  padding-right: 1.25rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -639,14 +622,9 @@ body {
 }
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item .wrapper div h4 {
-    padding: 1.25rem 0rem;
-    font-size: 1.4rem;
-  }
-}
-@media only screen and (max-width: 380px) {
-  .cart-overlay .cart-item .wrapper div h4 {
-    padding-bottom: 1.5rem;
-    font-size: 1.3rem;
+    padding: 1.25rem 0rem 0.75rem;
+    font-size: 1.25rem;
+    line-height: 1.75rem;
   }
 }
 .cart-overlay .cart-item .wrapper div.cotrls {
@@ -681,6 +659,8 @@ body {
 }
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts {
   display: flex;
+  flex-direction: column;
+  padding: 0px 20px 0px 60px;
 }
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-down {
@@ -689,7 +669,6 @@ body {
   cursor: pointer;
   transition: all 0.2s linear;
   margin: 0px 10px;
-  transform: rotate(-90deg);
 }
 @media only screen and (max-width: 1400px) {
   .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up,
@@ -720,7 +699,7 @@ body {
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .remove-item:hover {
   color: #ce4760;
   cursor: pointer;
-  transform: scale(1.075) rotate(-90deg);
+  transform: scale(1.075);
 }
 .cart-overlay .cart-item .wrapper div.cotrls p {
   font-size: 1.1rem;
@@ -806,7 +785,7 @@ body {
     font-size: 1.5rem;
   }
 }
-.cart-overlay .cart-footer button {
+.cart-overlay .cart-footer .order-btn {
   display: inline-block;
   margin-top: 1.2rem;
   padding: 1.2rem 3.2rem;
@@ -824,11 +803,11 @@ body {
   box-shadow: 1px 2px 12px rgba(55, 50, 62, 0.2);
   margin-bottom: 0.5rem;
 }
-.cart-overlay .cart-footer button:hover {
+.cart-overlay .cart-footer .order-btn:hover {
   transform: scale(1.075);
 }
 @media only screen and (max-width: 520px) {
-  .cart-overlay .cart-footer button {
+  .cart-overlay .cart-footer .order-btn {
     display: block;
     padding: 1rem 2.5rem;
   }

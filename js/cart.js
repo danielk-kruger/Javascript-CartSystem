@@ -8,6 +8,7 @@ const cartTotal = document.querySelector(".cart-total");
 const cartItems = document.querySelector(".cart-items");
 const cartContent = document.querySelector(".cart-content");
 const sideBarFooter = document.querySelector(".cart-footer");
+const orderBtn = document.querySelector(".order-btn");
 
 window.addEventListener("scroll", () => {
   const nav = document.querySelector(".nav");
