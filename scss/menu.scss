@@ -720,9 +720,11 @@ body {
 
     &-footer {
       text-align: center;
-      position: sticky;
+      position: fixed;
       // left: 50%;
       bottom: 0;
+      left: 0;
+      right: 0;
       // transform: translateX(-50%);
       margin: 2rem 0 0;
       display: flex;
