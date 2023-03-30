@@ -327,6 +327,7 @@ body {
     overflow-y: auto;
     transition: all 0.35s ease;
     z-index: 70;
+    // padding-bottom: 10vh;
 
     &.visible-cart {
       right: 0px;
@@ -419,6 +420,10 @@ body {
     &-content {
       display: block;
       height: 100%;
+      // padding-bottom: 20vh;
+      // scroll-padding-bottom: 100vh;
+      // scroll-padding-bottom: 50vh;
+      margin-bottom: 30vh;
 
       &.empty-content {
         display: flex;
@@ -426,6 +431,7 @@ body {
         justify-content: flex-start;
         align-items: center;
         text-align: center;
+        margin-bottom: 0;
 
         p#empty-msg.false {
           display: block;
@@ -453,7 +459,8 @@ body {
       box-shadow: 3px 2px 15px rgba(0, 0, 0, 0.3),
         -2px -1px 10px rgba(0, 0, 0, 0.3);
       transition: all 0.25s ease;
-      position: relative;
+
+      // position: relative;
 
       &:hover {
         transform: scale(1.025);
@@ -463,11 +470,13 @@ body {
 
       @include sm-screen {
         width: 80%;
-        height: fit-content;
+        height: 13rem;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
         grid-row-gap: 0.5rem;
         grid-column-gap: 0rem;
+        position: relative;
+        // margin: auto;
       }
 
       @include xs-screen {
@@ -496,11 +505,6 @@ body {
           width: 40%;
         }
 
-        // @include sm-screen {
-        //   width: 50%;
-        //   height: 10rem;
-        // }
-
         @include sm-screen {
           width: 100%;
           height: 13rem;
@@ -518,9 +522,10 @@ body {
       }
 
       .wrapper {
+        width: 100%;
         display: flex;
         flex-direction: column;
-        justify-content: space-around;
+        justify-content: center;
         align-items: center;
 
         @include sm-screen {
@@ -532,10 +537,11 @@ body {
         }
 
         div {
+          width: 100%;
           text-align: center;
           padding-right: 1.25rem;
           display: flex;
-          justify-content: center;
+          justify-content: space-evenly;
           align-items: center;
           // flex-direction: column;
 
@@ -551,7 +557,7 @@ body {
           @include xs-screen {
             justify-self: center;
             padding-bottom: 1.125rem;
-            margin: auto 1rem;
+            margin: 0rem 1rem;
           }
 
           &:last-child {
@@ -637,7 +643,7 @@ body {
             .cotrls-amounts {
               display: flex;
               // flex-direction: column;
-              padding: 0px 20px 0px 60px;
+              // padding: 0px 20px 0px 60px;
               // flex: 1;
 
               .fa-chevron-up,
@@ -671,7 +677,7 @@ body {
               .remove-item:hover {
                 color: $primary-color;
                 cursor: pointer;
-                transform: scale(1.075);
+                transform: scale(1.075) rotate(-90deg);
               }
             }
 

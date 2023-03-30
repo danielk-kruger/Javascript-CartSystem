@@ -471,6 +471,7 @@ body {
 .cart-overlay .cart-content {
   display: block;
   height: 100%;
+  margin-bottom: 30vh;
 }
 .cart-overlay .cart-content.empty-content {
   display: flex;
@@ -478,6 +479,7 @@ body {
   justify-content: flex-start;
   align-items: center;
   text-align: center;
+  margin-bottom: 0;
 }
 .cart-overlay .cart-content.empty-content p#empty-msg.false {
   display: block;
@@ -497,7 +499,6 @@ body {
   color: #37323e;
   box-shadow: 3px 2px 15px rgba(0, 0, 0, 0.3), -2px -1px 10px rgba(0, 0, 0, 0.3);
   transition: all 0.25s ease;
-  position: relative;
 }
 .cart-overlay .cart-item:hover {
   transform: scale(1.025);
@@ -506,11 +507,12 @@ body {
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item {
     width: 80%;
-    height: fit-content;
+    height: 13rem;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 0.5rem;
     grid-column-gap: 0rem;
+    position: relative;
   }
 }
 @media only screen and (max-width: 380px) {
@@ -560,9 +562,10 @@ body {
   }
 }
 .cart-overlay .cart-item .wrapper {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 @media only screen and (max-width: 520px) {
@@ -575,10 +578,11 @@ body {
   }
 }
 .cart-overlay .cart-item .wrapper div {
+  width: 100%;
   text-align: center;
   padding-right: 1.25rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
 }
 @media only screen and (max-width: 1400px) {
@@ -595,7 +599,7 @@ body {
   .cart-overlay .cart-item .wrapper div {
     justify-self: center;
     padding-bottom: 1.125rem;
-    margin: auto 1rem;
+    margin: 0rem 1rem;
   }
 }
 @media only screen and (max-width: 520px) {
@@ -677,7 +681,6 @@ body {
 }
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts {
   display: flex;
-  padding: 0px 20px 0px 60px;
 }
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-down {
@@ -717,7 +720,7 @@ body {
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .remove-item:hover {
   color: #ce4760;
   cursor: pointer;
-  transform: scale(1.075);
+  transform: scale(1.075) rotate(-90deg);
 }
 .cart-overlay .cart-item .wrapper div.cotrls p {
   font-size: 1.1rem;
