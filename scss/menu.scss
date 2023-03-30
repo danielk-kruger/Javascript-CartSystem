@@ -462,7 +462,7 @@ body {
       }
 
       @include sm-screen {
-        width: 90%;
+        width: 80%;
         height: fit-content;
         display: grid;
         grid-template-columns: repeat(1, 1fr);
@@ -503,7 +503,7 @@ body {
 
         @include sm-screen {
           width: 100%;
-          height: 15rem;
+          height: 13rem;
           border-radius: 0.5rem !important;
           border-bottom-right-radius: 0rem !important;
           border-bottom-left-radius: 0rem !important;
@@ -604,7 +604,7 @@ body {
 
           &.cotrls {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end;
             align-items: center;
             // padding: 0px 20px;
 
@@ -636,7 +636,7 @@ body {
 
             .cotrls-amounts {
               display: flex;
-              flex-direction: column;
+              // flex-direction: column;
               padding: 0px 20px 0px 60px;
               // flex: 1;
 
@@ -646,6 +646,8 @@ body {
                 display: block;
                 cursor: pointer;
                 transition: all 0.2s linear;
+                margin: 0px 10px;
+                transform: rotate(-90deg);
 
                 @include lg-screen {
                   font-size: 1.25rem;
@@ -662,14 +664,6 @@ body {
                 @include xs-screen {
                   font-size: 1.8rem;
                 }
-              }
-
-              .fa-chevron-up {
-                margin-bottom: 10px;
-              }
-
-              .fa-chevron-down {
-                margin-top: 10px;
               }
 
               .fa-chevron-up:hover,

@@ -11,13 +11,11 @@ const sideBarFooter = document.querySelector(".cart-footer");
 
 window.addEventListener("scroll", () => {
   const nav = document.querySelector(".nav");
-  const content = document.querySelector(".content");
+  const { offsetTop, offsetHeight } = nav;
 
-  if (window.scrollY > nav.offsetTop + nav.offsetHeight) {
-    nav.classList.add("sticky");
-  } else {
-    nav.classList.remove("sticky");
-  }
+  window.scrollY > offsetTop + offsetHeight
+    ? nav.classList.add("sticky")
+    : nav.classList.remove("sticky");
 });
 
 const client = contentful.createClient({
@@ -35,18 +33,17 @@ let buttonsDom = [];
 class Products {
   async getProducts() {
     try {
-      const content = await client.getEntries({
+      const { items } = await client.getEntries({
         content_type: "cakeyCakeStoreWebsite",
       });
 
-      let products = content.items;
-      products = products.map((item) => {
-        const { title, price } = item.fields;
-        const { id } = item.sys;
-        const image = item.fields.image.fields.file.url;
-        return { title, price, id, image };
-      });
-      // console.log(products);
+      const products = items.map(({ fields, sys }) => ({
+        title: fields.title,
+        price: fields.price,
+        id: sys.id,
+        image: fields.image.fields.file.url,
+      }));
+
       return products;
     } catch (err) {
       console.log(err);
@@ -56,15 +53,10 @@ class Products {
 
 class UI {
   checkCart() {
-    if (cart.length >= 1) {
-      sideBarFooter.classList.remove("empty");
-      cartContent.classList.remove("empty-content");
-      document.getElementById("empty-msg").classList.remove("false");
-    } else {
-      sideBarFooter.classList.add("empty");
-      cartContent.classList.add("empty-content");
-      document.getElementById("empty-msg").classList.add("false");
-    }
+    const isEmpty = cart.length === 0;
+    sideBarFooter.classList.toggle("empty", isEmpty);
+    cartContent.classList.toggle("empty-content", isEmpty);
+    document.getElementById("empty-msg").classList.toggle("false", isEmpty);
   }
 
   displayProducts(products) {
@@ -88,15 +80,12 @@ class UI {
 
   // When Order buttons are clicked send the data to the shopping cart
   getOrderButtons() {
-    // Collect all buttons and convert into an array
-    let btns = [...document.querySelectorAll(".checkout")];
+    const btns = [...document.querySelectorAll(".checkout")];
     buttonsDom = btns;
 
     buttonsDom.forEach((btn) => {
-      const id = btn.dataset.id;
-
-      // create a variable with a high order function to see if the item is inside the cart
-      let inCart = cart.find((item) => item.id === id);
+      const { id } = btn.dataset;
+      const inCart = cart.find((item) => item.id === id);
 
       if (inCart) {
         btn.innerText = "In Cart";
@@ -107,22 +96,12 @@ class UI {
         e.target.innerText = "In Cart";
         e.target.disabled = true;
 
-        // get the product from storage containing the targeted id and set the quantity to 1
-        let cartItem = { ...Storage.getProduct(id), amount: 1 };
-
-        // add product to the cart array
+        const cartItem = { ...Storage.getProduct(id), amount: 1 };
         cart = [...cart, cartItem];
 
         Storage.saveCart(cart);
-
-        // set the new cart values
         this.setCartValues(cart);
-
-        // display cart item
-        // console.log(cartItem[0].title);
         this.addCartItem(cartItem);
-
-        // display the cart item
         this.showCart();
       });
     });
@@ -139,6 +118,7 @@ class UI {
   addCartItem(item) {
     const div = document.createElement("div");
     div.classList.add("cart-item");
+
     div.innerHTML = `
       <img
         src=${item.image}
@@ -244,16 +224,13 @@ class UI {
   }
 
   setCartValues(cart) {
-    let tempTotal = 0;
-    let itemsTotal = 0;
+    const tempTotal = cart.reduce(
+      (total, item) => total + item.price * item.amount,
+      0
+    );
+    const itemsTotal = cart.reduce((total, item) => total + item.amount, 0);
 
-    cart.map((item) => {
-      tempTotal += item.price * item.amount;
-      itemsTotal += item.amount;
-    });
-
-    // console.log(parseFloat(tempTotal.toFixed(2)));
-    cartTotal.innerText = parseFloat(tempTotal.toFixed(2));
+    cartTotal.innerText = Number(tempTotal.toFixed(2));
     cartItems.innerText = itemsTotal;
   }
 
@@ -307,7 +284,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .then(() => {
       ui.getOrderButtons();
       ui.cartLogic();
-      // ui.checkCart();
     });
 
   cartBtn.addEventListener("click", () => {
