@@ -290,4 +290,22 @@ document.addEventListener("DOMContentLoaded", () => {
   cartBtn.addEventListener("click", () => {
     ui.checkCart();
   });
+
+  orderBtn.addEventListener("click", () => {
+    const setOrder = () => {
+      const order = "Ola Elka, queria encomendar:\n\n";
+
+      cart.forEach(({ title, amount, price }, index) => {
+        order.concat(`
+        Encomenda No. ${index}\n
+        ${amount} ${title} de ${price} por dúzia
+      `);
+      });
+
+      orderBtn.href =
+        "https://wa.me/258845200781?text=I'm%20interested%20in%20your%20car%20for%20sale";
+    };
+
+    if (cart.length >= 1) setOrder();
+  });
 });

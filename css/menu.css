@@ -554,10 +554,9 @@ body {
 }
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item .wrapper {
-    padding: 0px 20px;
     flex-direction: row;
     justify-content: space-between;
-    width: 80%;
+    width: 100%;
     margin: 0 auto;
   }
 }
@@ -565,8 +564,9 @@ body {
   width: 100%;
   text-align: center;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
+  margin: 0 auto;
 }
 @media only screen and (max-width: 1400px) {
   .cart-overlay .cart-item .wrapper div {
@@ -593,6 +593,7 @@ body {
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item .wrapper div:first-child {
     flex-direction: column;
+    padding-left: 20px;
   }
 }
 .cart-overlay .cart-item .wrapper div .mobile {
@@ -622,7 +623,7 @@ body {
 }
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item .wrapper div h4 {
-    padding: 1.25rem 0rem 0.75rem;
+    padding: 1.25rem 0rem 0rem;
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
@@ -631,11 +632,6 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-}
-@media only screen and (max-width: 920px) {
-  .cart-overlay .cart-item .wrapper div.cotrls {
-    width: 100%;
-  }
 }
 .cart-overlay .cart-item .wrapper div.cotrls h5 {
   font-size: 0.825rem;

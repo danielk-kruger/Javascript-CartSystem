@@ -514,10 +514,10 @@ body {
         align-items: center;
 
         @include sm-screen {
-          padding: 0px 20px;
+          // padding: 0px 20px;
           flex-direction: row;
           justify-content: space-between;
-          width: 80%;
+          width: 100%;
           margin: 0 auto;
         }
 
@@ -525,8 +525,9 @@ body {
           width: 100%;
           text-align: center;
           display: flex;
-          justify-content: space-evenly;
+          justify-content: center;
           align-items: center;
+          margin: 0 auto;
           // flex-direction: column;
 
           @include lg-screen {
@@ -553,6 +554,7 @@ body {
           &:first-child {
             @include sm-screen {
               flex-direction: column;
+              padding-left: 20px;
             }
           }
 
@@ -580,10 +582,10 @@ body {
             }
 
             @include sm-screen {
-              padding: 1.25rem 0rem 0.75rem;
-              // padding-bottom: 1.25rem;
+              padding: 1.25rem 0rem 0rem;
               font-size: 1.25rem;
               line-height: 1.75rem;
+              // width: 80%;
             }
           }
 
@@ -592,14 +594,6 @@ body {
             justify-content: flex-end;
             align-items: center;
             // padding: 0px 20px;
-
-            @include md-screen {
-              width: 100%;
-            }
-
-            @include sm-screen {
-              // flex-direction: column;
-            }
 
             h5 {
               font-size: 0.825rem;
