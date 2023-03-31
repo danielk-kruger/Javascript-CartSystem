@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
 
       console.log(order);
-      orderBtn.href = `https://wa.me/258845200781?text=${order}`;
+      orderBtn.href = `https://wa.me/258854604410?text=${order}`;
     };
 
     if (cart.length >= 1) setOrder();
