@@ -305,9 +305,7 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       });
       let orderFooter = `
-      %0A%0A%0AData do Encomenda: ${
-        new Date(Date.now).toLocaleString
-      }%0ATotal a Pagar: ${total}
+      %0A%0A%0AData do Encomenda: %0ATotal a Pagar: ${total}
       `;
 
       // console.log(order);

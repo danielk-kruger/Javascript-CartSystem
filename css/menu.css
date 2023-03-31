@@ -692,7 +692,7 @@ body {
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up:hover,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-down:hover,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .remove-item:hover {
-  color: #e3ebff;
+  color: #ef6461;
   cursor: pointer;
   transform: scale(1.075);
 }
