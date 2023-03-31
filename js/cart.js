@@ -304,9 +304,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
         `;
       });
+      let orderFooter = `
+      %0A%0A%0AData do Encomenda: ${
+        new Date(Date.now).toLocaleString
+      }%0ATotal a Pagar: ${total}
+      `;
 
       // console.log(order);
-      orderBtn.href = `https://wa.me/258854604410?text=${order}%0A%0A%0ATotal a Pagar: ${total}`;
+      orderBtn.href = `https://wa.me/258854604410?text=${order}${orderFooter}`;
     };
 
     if (cart.length >= 1) setOrder();
