@@ -293,10 +293,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   orderBtn.addEventListener("click", () => {
     const setOrder = () => {
-      let order = `Ola Elka, queria encomendar:\n\n`;
+      let order = `Ola Elka, queria encomendar:%0A%0A`;
 
       cart.forEach(({ title, amount, price }, index) => {
-        order += `Encomenda No. ${index}\n
+        order += `Encomenda No. ${index + 1}%0A
         ${amount} ${title} de ${price} por dúzia`;
       });
 
