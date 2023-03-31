@@ -365,12 +365,12 @@ body {
   background: rgba(48, 54, 52, 0.5);
   visibility: hidden;
   z-index: 60;
+  transition: 0.1s;
 }
 .cart-overlay.show {
   visibility: visible;
 }
 .cart-overlay .cart {
-  width: 30%;
   height: 100%;
   position: relative;
   background-image: linear-gradient(to top, #ef6461 0%, #f5efef 100%);
@@ -382,7 +382,7 @@ body {
   top: 0;
   right: 500px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.25);
-  overflow-y: auto;
+  overflow-y: scroll;
   transition: all 0.35s ease;
   z-index: 70;
 }
@@ -470,8 +470,9 @@ body {
 }
 .cart-overlay .cart-content {
   display: block;
-  height: 100%;
-  margin-bottom: 30vh;
+  width: 100%;
+  height: max-content;
+  margin-bottom: 11.25rem;
 }
 .cart-overlay .cart-content.empty-content {
   display: flex;
@@ -493,7 +494,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background-color: #f5efef;
-  width: 90%;
+  width: 80%;
   margin: 1.5rem auto 0rem;
   border-radius: 0.5rem;
   color: #37323e;
@@ -506,8 +507,8 @@ body {
 }
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item {
-    width: 80%;
-    height: 20rem;
+    width: 85%;
+    height: 22.5rem;
     display: grid;
     grid-template-columns: repeat(1, 1fr);
     grid-row-gap: 0rem;
@@ -536,7 +537,7 @@ body {
 @media only screen and (max-width: 520px) {
   .cart-overlay .cart-item img {
     width: 100%;
-    height: 12.5rem;
+    height: 13.5rem;
     border-radius: 0.5rem !important;
     border-bottom-right-radius: 0rem !important;
     border-bottom-left-radius: 0rem !important;
@@ -546,7 +547,7 @@ body {
 }
 .cart-overlay .cart-item .wrapper {
   width: 100%;
-  height: 7.5rem;
+  height: 9rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -740,7 +741,6 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  margin: 2rem 0 0;
   display: flex;
   justify-content: space-around;
   align-items: flex-end;
@@ -748,6 +748,7 @@ body {
   padding: 10px 0px 30px;
   background: #ef6461;
   box-shadow: -10px -2px 18px 7px rgba(55, 50, 62, 0.2);
+  z-index: 100;
 }
 .cart-overlay .cart-footer.empty {
   display: none;
