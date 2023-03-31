@@ -296,8 +296,11 @@ document.addEventListener("DOMContentLoaded", () => {
       let order = `Ola Elka, queria encomendar:%0A%0A`;
 
       cart.forEach(({ title, amount, price }, index) => {
-        order += `Encomenda No. ${index + 1}%0A
-        ${amount} ${title} de ${price} por dúzia`;
+        order += `Encomenda No. ${index + 1}%0A%0A
+        Produto: ${title} %0A%0A
+        Quantidade: ${amount} dúzias %0A%0A
+        Preço: ${price} por dúzia %0A%0A
+        `;
       });
 
       console.log(order);
