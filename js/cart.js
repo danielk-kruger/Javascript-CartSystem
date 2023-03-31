@@ -294,16 +294,19 @@ document.addEventListener("DOMContentLoaded", () => {
   orderBtn.addEventListener("click", () => {
     const setOrder = () => {
       let order = `Ola Elka, queria encomendar:%0A%0A`;
+      let total = 0;
 
       cart.forEach(({ title, amount, price }, index) => {
+        total += amount * price;
+
         order += `Encomenda: ${
           index + 1
         }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
         `;
       });
 
-      console.log(order);
-      orderBtn.href = `https://wa.me/258854604410?text=${order}`;
+      // console.log(order);
+      orderBtn.href = `https://wa.me/258854604410?text=${order}%0A%0A%0ATotal a Pagar: ${total}`;
     };
 
     if (cart.length >= 1) setOrder();
