@@ -127,7 +127,7 @@ class UI {
       />
       <div class='wrapper'>
         <div>
-        <h4>${item.title}</h4>
+          <h4>${item.title}</h4>
         <h5 class='mobile'>MT ${item.price}</h5>
       </div>
       <div class='cotrls'>

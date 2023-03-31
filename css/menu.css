@@ -55,7 +55,7 @@ a {
   font-size: 1.425rem;
   padding: 0.625rem 1.125rem;
   border-radius: 50%;
-  background: #eec584;
+  background: #ef6461;
   box-shadow: 1px 2px 12px rgba(55, 50, 62, 0.1);
   transition: all 0.3s ease;
   opacity: 0;
@@ -92,7 +92,7 @@ body {
 }
 @media only screen and (max-width: 520px) {
   .container {
-    background-image: linear-gradient(to bottom, #f5efef 0%, #eec584 100%);
+    background-image: linear-gradient(to bottom, #f5efef 0%, #ef6461 100%);
     background-size: cover;
   }
 }
@@ -108,7 +108,7 @@ body {
   margin-bottom: 1rem;
 }
 .container .nav.sticky {
-  background: #eee;
+  background: #ece8ef;
   z-index: 30;
   margin: 0;
   opacity: 0.75;
@@ -119,7 +119,7 @@ body {
 .container .nav a {
   font-family: "Comforter Brush", cursive;
   font-size: 2.5rem;
-  color: #ce4760;
+  color: #ef6461;
   padding: 0.5rem;
   display: block;
 }
@@ -135,9 +135,9 @@ body {
   right: -5px;
   width: 1.2rem;
   height: 1.2rem;
-  background-color: #eec584;
+  background-color: #ef6461;
   font-size: 0.9rem;
-  color: #eee;
+  color: #ece8ef;
   border-radius: 50%;
   text-align: center;
 }
@@ -161,7 +161,7 @@ body {
   content: "";
   width: 50%;
   height: 5px;
-  background: #ce4760;
+  background: #ef6461;
   background-size: 100%;
   background-position: center;
   position: absolute;
@@ -185,7 +185,7 @@ body {
   transition: color 0.2s ease;
 }
 .container .content label:hover {
-  color: #c73550;
+  color: #cad9ff;
 }
 .container .gallery {
   width: 90%;
@@ -295,8 +295,8 @@ body {
   border-radius: 0.5rem;
   padding: 0.625rem 1.5rem;
   cursor: pointer;
-  background: #ce4760;
-  color: #eee;
+  background: #e3ebff;
+  color: #37323e;
   background-size: cover;
   background-position: center;
   box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.25);
@@ -373,7 +373,7 @@ body {
   width: 30%;
   height: 100%;
   position: relative;
-  background-image: linear-gradient(to top, #eec584 0%, #f5efef 100%);
+  background-image: linear-gradient(to top, #ef6461 0%, #f5efef 100%);
   background-position: center;
   background-size: 100%;
   display: flex;
@@ -660,7 +660,6 @@ body {
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts {
   display: flex;
   flex-direction: column;
-  padding: 0px 20px 0px 60px;
 }
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-down {
@@ -697,7 +696,7 @@ body {
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-up:hover,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .fa-chevron-down:hover,
 .cart-overlay .cart-item .wrapper div.cotrls .cotrls-amounts .remove-item:hover {
-  color: #ce4760;
+  color: #e3ebff;
   cursor: pointer;
   transform: scale(1.075);
 }
@@ -720,7 +719,7 @@ body {
 .cart-overlay .cart-item a.remove-item i {
   padding: 0.25rem;
   pointer-events: none;
-  color: #eec584;
+  color: #ef6461;
 }
 @media only screen and (max-width: 2000px) {
   .cart-overlay .cart-item a.remove-item {
@@ -751,7 +750,7 @@ body {
   align-items: flex-end;
   justify-self: flex-end;
   padding: 10px 0px 30px;
-  background: #eec584;
+  background: #ef6461;
   box-shadow: -10px -2px 18px 7px rgba(55, 50, 62, 0.2);
 }
 .cart-overlay .cart-footer.empty {
@@ -795,10 +794,10 @@ body {
   border: none;
   outline: none;
   cursor: pointer;
-  background-color: #ce4760;
+  background-color: #e3ebff;
   background-position: center;
   background-size: 100%;
-  color: #d1dede;
+  color: #37323e;
   transition: all 0.35s ease;
   box-shadow: 1px 2px 12px rgba(55, 50, 62, 0.2);
   margin-bottom: 0.5rem;
