@@ -108,10 +108,21 @@ class UI {
     });
   }
 
+  initDatePicker() {
+    new AirDatepicker("#date", {
+      inline: false,
+      isMobile: true,
+      autoClose: true,
+      timepicker: true,
+      timeFormat: "hh:mm AA",
+    });
+  }
+
   setupApp() {
     cart = Storage.getCart();
     this.setCartValues(cart);
     this.populateCart(cart);
+    this.initDatePicker();
     cartBtn.addEventListener("click", this.showCart);
     closeCartBtn.addEventListener("click", this.hideCart);
   }
@@ -155,35 +166,24 @@ class UI {
     cartContent.addEventListener("click", (event) => {
       if (event.target.classList.contains("remove")) {
         let removeItem = event.target;
-        let id = removeItem.dataset.id;
-        console.log(removeItem);
+        let { id } = removeItem.dataset;
         cartContent.removeChild(removeItem.parentElement);
         this.removeItem(id);
-      } else if (event.target.classList.contains("fa-chevron-up")) {
-        let addAmount = event.target;
-        let id = addAmount.dataset.id;
-        let tempItem = cart.find((item) => item.id === id);
-        tempItem.amount = tempItem.amount + 1;
-        Storage.saveCart(cart);
-        this.setCartValues(cart);
-        addAmount.nextElementSibling.innerText = tempItem.amount;
-      } else if (event.target.classList.contains("fa-chevron-down")) {
-        let lowerAmount = event.target;
-        let id = lowerAmount.dataset.id;
-        let tempItem = cart.find((item) => item.id === id);
-        tempItem.amount = tempItem.amount - 1;
-
-        if (tempItem.amount > 0) {
-          Storage.saveCart(cart);
-          this.setCartValues(cart);
-          lowerAmount.previousElementSibling.innerText = tempItem.amount;
-        } else {
-          cartContent.removeChild(lowerAmount.parentElement.parentElement);
-          this.removeItem(id);
-        }
+        return;
       }
 
-      // this.checkCart();
+      let value = event.target;
+      const { id } = value.dataset;
+      let tempItem = cart.find((item) => item.id === id);
+      const valInc = value.classList.contains("fa-chevron-up");
+
+      tempItem.amount += valInc ? 1 : -1;
+      if (valInc) value.nextElementSibling.innerText = tempItem.amount;
+      else value.previousElementSibling.innerText = tempItem.amount;
+
+      Storage.saveCart(cart);
+      this.setCartValues(cart);
+      this.checkCart();
     });
   }
 

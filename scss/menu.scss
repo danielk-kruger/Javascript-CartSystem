@@ -29,6 +29,10 @@ body {
     background-size: cover;
   }
 
+  .modal-container {
+    display: none;
+  }
+
   .nav {
     position: fixed;
     top: 0;
