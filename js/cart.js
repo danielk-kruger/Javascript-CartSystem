@@ -1,3 +1,5 @@
+import { User } from "./user.js";
+
 const cartBtn = document.querySelector(".show-cart");
 const gallery = document.querySelector(".gallery");
 const closeCartBtn = document.querySelector(".cart-close");
@@ -64,8 +66,6 @@ class UI {
   constructor(category) {
     this.loadProducts(category);
     this.setupApp();
-
-    // console.log(this.products);
   }
 
   loadProducts(category) {
