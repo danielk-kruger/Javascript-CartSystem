@@ -62,8 +62,8 @@ class UI {
   products = [];
 
   constructor(category) {
-    this.setupApp();
     this.loadProducts(category);
+    this.setupApp();
 
     // console.log(this.products);
   }
@@ -77,7 +77,6 @@ class UI {
       })
       .then(() => {
         this.getOrderButtons();
-        this.cartLogic();
       });
   }
 
@@ -85,6 +84,7 @@ class UI {
     cart = Storage.getCart();
     this.setCartValues(cart);
     this.populateCart(cart);
+    this.cartLogic();
     this.initDatePicker();
     this.updateCategories();
 
