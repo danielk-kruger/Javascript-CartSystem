@@ -34,7 +34,7 @@ $xlg-screen-size: 2000px;
 $lg-screen-size: 1400px;
 $md-screen-size: 920px;
 $sm-screen-size: 520px;
-$xs-screen-size: 380px;
+$xs-screen-size: 388px;
 
 @mixin xlg-screen {
   @media only screen and (max-width: $xlg-screen-size) {

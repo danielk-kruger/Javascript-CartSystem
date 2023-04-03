@@ -33,12 +33,11 @@ let buttonsDom = [];
 let currentTab = document.querySelector(".tab.active");
 
 class Products {
-  async getProducts() {
+  static async getProducts(category) {
     try {
       const { items } = await client.getEntries({
         content_type: "cakeyCakeStoreWebsite",
       });
-      console.log(items);
 
       const products = items.map(({ fields, sys }) => ({
         title: fields.title,
@@ -49,7 +48,10 @@ class Products {
         image: fields.image.fields.file.url,
       }));
 
-      return products;
+      if (category.toLowerCase() === "all") return products;
+      return products.filter(
+        (prod) => String(prod.category).toLowerCase() === category.toLowerCase()
+      );
     } catch (err) {
       console.log(err);
     }
@@ -59,6 +61,40 @@ class Products {
 class UI {
   products = [];
 
+  constructor(category) {
+    this.setupApp();
+    this.loadProducts(category);
+
+    // console.log(this.products);
+  }
+
+  loadProducts(category) {
+    Products.getProducts(category)
+      .then((res) => {
+        this.products = res;
+        this.displayProducts(res);
+        Storage.saveProducts(res);
+      })
+      .then(() => {
+        this.getOrderButtons();
+        this.cartLogic();
+      });
+  }
+
+  setupApp() {
+    cart = Storage.getCart();
+    this.setCartValues(cart);
+    this.populateCart(cart);
+    this.initDatePicker();
+    this.updateCategories();
+
+    cartBtn.addEventListener("click", () => {
+      this.checkCart();
+      this.showCart();
+    });
+    closeCartBtn.addEventListener("click", this.hideCart);
+  }
+
   checkCart() {
     const isEmpty = cart.length === 0;
     sideBarFooter.classList.toggle("empty", isEmpty);
@@ -66,11 +102,11 @@ class UI {
     document.getElementById("empty-msg").classList.toggle("false", isEmpty);
   }
 
-  displayProducts(products, category) {
+  displayProducts() {
     let result = "";
-    this.products = products;
+    // this.products = products;
 
-    this.filterProducts(products, category).forEach((prod) => {
+    this.products.forEach((prod) => {
       result += `
         <div class="gallery-pic">
           <p>${prod.title}</p>
@@ -84,15 +120,22 @@ class UI {
         </div>
       `;
     });
+    // Storage.saveProducts(this.products);
     gallery.innerHTML = result;
   }
 
-  filterProducts(products, category) {
-    if (category === "all") return products;
+  updateCategories() {
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", (event) => {
+        event.preventDefault();
 
-    return products.filter(
-      (prod) => String(prod.category).toLowerCase() === category
-    );
+        currentTab.classList.remove("active");
+        event.target.classList.add("active");
+        currentTab = event.target;
+
+        this.loadProducts(event.target.dataset.category);
+      });
+    });
   }
 
   // When Order buttons are clicked send the data to the shopping cart
@@ -112,6 +155,7 @@ class UI {
       btn.addEventListener("click", (e) => {
         e.target.innerText = "In Cart";
         e.target.disabled = true;
+        console.log(e.target);
 
         const cartItem = { ...Storage.getProduct(id), amount: 1 };
         cart = [...cart, cartItem];
@@ -132,15 +176,6 @@ class UI {
       timepicker: true,
       timeFormat: "hh:mm AA",
     });
-  }
-
-  setupApp() {
-    cart = Storage.getCart();
-    this.setCartValues(cart);
-    this.populateCart(cart);
-    this.initDatePicker();
-    cartBtn.addEventListener("click", this.showCart);
-    closeCartBtn.addEventListener("click", this.hideCart);
   }
 
   addCartItem(item) {
@@ -255,16 +290,6 @@ class UI {
     cartSideBar.classList.add("visible-cart");
     document.body.style.overflow = "hidden";
   }
-
-  updateCategories(event) {
-    event.preventDefault();
-
-    currentTab.classList.remove("active");
-    event.target.classList.add("active");
-    currentTab = event.target;
-    // this.displayProducts
-    this.displayProducts(this.products, event.target.dataset.category);
-  }
 }
 
 class Storage {
@@ -289,32 +314,7 @@ class Storage {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  const ui = new UI();
-  const products = new Products();
-
-  ui.setupApp();
-
-  products
-    .getProducts()
-    .then((product) => {
-      ui.displayProducts(product, currentTab.dataset.category);
-      Storage.saveProducts(product);
-      // console.log(Storage.getProduct("39yV3WJKg4nEAlmbixMhNY"));
-    })
-    .then(() => {
-      ui.getOrderButtons();
-      ui.cartLogic();
-    });
-
-  cartBtn.addEventListener("click", () => {
-    ui.checkCart();
-  });
-
-  tabs.forEach((tab) => {
-    tab.addEventListener("click", (event) => {
-      ui.updateCategories(event);
-    });
-  });
+  new UI(currentTab.dataset.category);
 
   orderBtn.addEventListener("click", () => {
     const setOrder = () => {
