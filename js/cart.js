@@ -9,6 +9,7 @@ const cartItems = document.querySelector(".cart-items");
 const cartContent = document.querySelector(".cart-content");
 const sideBarFooter = document.querySelector(".cart-footer");
 const orderBtn = document.querySelector(".order-btn");
+const tabs = [...document.querySelectorAll(".tab")];
 
 window.addEventListener("scroll", () => {
   const nav = document.querySelector(".nav");
@@ -28,8 +29,8 @@ const client = contentful.createClient({
 
 // Cart Items
 let cart = [];
-
 let buttonsDom = [];
+let currentTab = document.querySelector(".tab.active");
 
 class Products {
   async getProducts() {
@@ -37,10 +38,13 @@ class Products {
       const { items } = await client.getEntries({
         content_type: "cakeyCakeStoreWebsite",
       });
+      console.log(items);
 
       const products = items.map(({ fields, sys }) => ({
         title: fields.title,
         price: fields.price,
+        isAvailable: fields.isAvailable,
+        category: fields.category,
         id: sys.id,
         image: fields.image.fields.file.url,
       }));
@@ -53,6 +57,8 @@ class Products {
 }
 
 class UI {
+  products = [];
+
   checkCart() {
     const isEmpty = cart.length === 0;
     sideBarFooter.classList.toggle("empty", isEmpty);
@@ -60,9 +66,11 @@ class UI {
     document.getElementById("empty-msg").classList.toggle("false", isEmpty);
   }
 
-  displayProducts(products) {
+  displayProducts(products, category) {
     let result = "";
-    products.forEach((prod) => {
+    this.products = products;
+
+    this.filterProducts(products, category).forEach((prod) => {
       result += `
         <div class="gallery-pic">
           <p>${prod.title}</p>
@@ -77,6 +85,14 @@ class UI {
       `;
     });
     gallery.innerHTML = result;
+  }
+
+  filterProducts(products, category) {
+    if (category === "all") return products;
+
+    return products.filter(
+      (prod) => String(prod.category).toLowerCase() === category
+    );
   }
 
   // When Order buttons are clicked send the data to the shopping cart
@@ -191,10 +207,8 @@ class UI {
     let cartItems = cart.map((item) => item.id);
     cartItems.forEach((id) => this.removeItem(id));
 
-    while (cartContent.children.length > 1) {
+    while (cartContent.children.length > 1)
       cartContent.removeChild(cartContent.children[1]);
-      // if (cart.length < 2) break;
-    }
 
     this.checkCart();
     this.hideCart();
@@ -216,12 +230,7 @@ class UI {
   }
 
   populateCart(cart) {
-    cart.forEach((item) => {
-      if (item) {
-        this.addCartItem(item);
-      }
-      return;
-    });
+    cart.forEach((item) => item && this.addCartItem(item));
   }
 
   setCartValues(cart) {
@@ -245,6 +254,16 @@ class UI {
     overlay.classList.add("show");
     cartSideBar.classList.add("visible-cart");
     document.body.style.overflow = "hidden";
+  }
+
+  updateCategories(event) {
+    event.preventDefault();
+
+    currentTab.classList.remove("active");
+    event.target.classList.add("active");
+    currentTab = event.target;
+    // this.displayProducts
+    this.displayProducts(this.products, event.target.dataset.category);
   }
 }
 
@@ -278,7 +297,7 @@ document.addEventListener("DOMContentLoaded", () => {
   products
     .getProducts()
     .then((product) => {
-      ui.displayProducts(product);
+      ui.displayProducts(product, currentTab.dataset.category);
       Storage.saveProducts(product);
       // console.log(Storage.getProduct("39yV3WJKg4nEAlmbixMhNY"));
     })
@@ -289,6 +308,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   cartBtn.addEventListener("click", () => {
     ui.checkCart();
+  });
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", (event) => {
+      ui.updateCategories(event);
+    });
   });
 
   orderBtn.addEventListener("click", () => {

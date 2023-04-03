@@ -122,6 +122,53 @@ body {
     }
   }
 
+  // overflow: hidden;
+
+  .categories {
+    width: 100%;
+    margin: 0 auto;
+    padding: 2rem 0rem 2rem 1.5rem;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    .tabs {
+      width: max-content;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+
+      .tab {
+        display: block;
+        position: relative;
+        color: $black;
+        font-size: 1.25rem;
+        padding: 10px;
+        border-radius: 5px;
+        margin-left: 1.25rem;
+        transition: all 0.2s linear;
+
+        &:first-child {
+          margin-left: 0;
+        }
+
+        &:last-child {
+          margin-right: 1.25rem;
+        }
+
+        &.active::after {
+          // content: '';
+          transition: all 0.2s linear;
+          @include customUnderline($secondary-color, 50%, 5px);
+        }
+      }
+    }
+  }
+
   .gallery {
     width: 90%;
     margin: 10rem auto;

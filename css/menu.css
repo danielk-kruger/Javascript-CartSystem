@@ -190,6 +190,53 @@ body {
 .container .content label:hover {
   color: #cad9ff;
 }
+.container .categories {
+  width: 100%;
+  margin: 0 auto;
+  padding: 2rem 0rem 2rem 1.5rem;
+  overflow-x: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.container .categories::-webkit-scrollbar {
+  display: none;
+}
+.container .categories .tabs {
+  width: max-content;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.container .categories .tabs .tab {
+  display: block;
+  position: relative;
+  color: #37323e;
+  font-size: 1.25rem;
+  padding: 10px;
+  border-radius: 5px;
+  margin-left: 1.25rem;
+  transition: all 0.2s linear;
+}
+.container .categories .tabs .tab:first-child {
+  margin-left: 0;
+}
+.container .categories .tabs .tab:last-child {
+  margin-right: 1.25rem;
+}
+.container .categories .tabs .tab.active::after {
+  transition: all 0.2s linear;
+  content: "";
+  width: 50%;
+  height: 5px;
+  background: #ef6461;
+  background-size: 100%;
+  background-position: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0.5rem;
+}
 .container .gallery {
   width: 90%;
   margin: 10rem auto;
