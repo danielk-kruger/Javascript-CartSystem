@@ -814,10 +814,11 @@ body {
 }
 .cart-overlay .cart-footer.order-ready {
   transform: translateY(0);
-  justify-content: space-around;
+  padding: 4rem 0rem 2rem;
+  justify-content: space-between;
   align-items: center;
   justify-self: center;
-  box-shadow: -10px -12px 24px 6px rgba(55, 50, 62, 0.2);
+  box-shadow: -10px -18px 24px 6px rgba(55, 50, 62, 0.2);
 }
 .cart-overlay .cart-footer.order-ready .cart-footer-main .order-btn,
 .cart-overlay .cart-footer.order-ready .cart-footer-main .order-finalize {
@@ -873,6 +874,7 @@ body {
 }
 .cart-overlay .cart-footer .modal h2 {
   font-size: 2rem;
+  margin-bottom: 1rem;
   color: #e3ebff;
 }
 .cart-overlay .cart-footer .modal form {
@@ -880,6 +882,16 @@ body {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+.cart-overlay .cart-footer .modal form p.error {
+  text-align: center;
+  font-size: 0.8rem;
+  color: orangered;
+  font-weight: bold;
+  display: none;
+}
+.cart-overlay .cart-footer .modal form p.error.hasError {
+  display: block;
 }
 .cart-overlay .cart-footer .modal form .client-name,
 .cart-overlay .cart-footer .modal form .client-date {
@@ -904,8 +916,9 @@ body {
 }
 .cart-overlay .cart-footer .modal form .client-name input,
 .cart-overlay .cart-footer .modal form .client-date input {
-  background: transparent;
+  background: none;
   color: #111014;
+  text-transform: capitalize;
   border: none;
   outline: none;
   width: max-content;

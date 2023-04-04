@@ -16,6 +16,7 @@ const cartItems = document.querySelector(".cart-items");
 const cartContent = document.querySelector(".cart-content");
 const sideBarFooter = document.querySelector(".cart-footer");
 const orderBtn = document.querySelector(".order-btn");
+const finalize = document.querySelector(".order-finalize");
 const tabs = [...document.querySelectorAll(".tab")];
 
 window.addEventListener("scroll", () => {
@@ -253,13 +254,13 @@ class UI {
   openDialogue() {
     const modal = document.querySelector(".modal");
     const modalClose = document.querySelector(".close");
-    const finalize = document.querySelector(".order-finalize");
 
     sideBarFooter.classList.add("order-ready");
     modal.classList.remove("hidden");
     modalClose.classList.remove("hidden");
     orderBtn.classList.add("clicked");
     finalize.classList.add("clicked");
+    cartSideBar.style.overflowY = "hidden";
 
     modalClose.addEventListener("click", () => {
       sideBarFooter.classList.remove("order-ready");
@@ -267,9 +268,31 @@ class UI {
       modalClose.classList.add("hidden");
       finalize.classList.remove("clicked");
       orderBtn.classList.remove("clicked");
+      cartSideBar.style.overflowY = "scroll";
     });
 
     return this;
+  }
+
+  parseDialogue() {
+    const userNameElem = document.getElementById("name");
+    const dateElem = document.getElementById("date");
+    const errorMsg = document.getElementById("error-msg");
+
+    // if (userName === "" || date === "") errorMsg.classList.add("hasError");
+    // else errorMsg.classList.remove("hasError");
+
+    userNameElem.addEventListener("change", () => {
+      if (userNameElem.value === "") errorMsg.classList.add("hasError");
+      else errorMsg.classList.remove("hasError");
+
+      dateElem.addEventListener("change", () => {
+        if (dateElem.value === "") errorMsg.classList.add("hasError");
+        else errorMsg.classList.remove("hasError");
+      });
+    });
+
+    return { fullName: userNameElem.value, date: dateElem.value };
   }
 
   setTotal(total) {
@@ -299,7 +322,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   orderBtn.addEventListener("click", () => {
     if (cart.length >= 1) {
-      uiManager.openDialogue();
+      const dialogue = uiManager.openDialogue();
+
+      const { fullName, date, total } = dialogue.parseDialogue();
+      const user = new User(fullName, date, cart);
+      user.collectUserInfo().collectOrders();
+
+      finalize.addEventListener("click", () => {
+        user.order();
+      });
     }
   });
 });
