@@ -18,6 +18,7 @@ const sideBarFooter = document.querySelector(".cart-footer");
 const orderBtn = document.querySelector(".order-btn");
 const finalize = document.querySelector(".order-finalize");
 const tabs = [...document.querySelectorAll(".tab")];
+const errorMsg = document.getElementById("error-msg");
 
 window.addEventListener("scroll", () => {
   const nav = document.querySelector(".nav");
@@ -164,7 +165,7 @@ class UI {
       isMobile: true,
       autoClose: true,
       timepicker: true,
-      timeFormat: "hh:mm AA",
+      timeFormat: "HH:mm",
       locale: localePtBr,
     });
   }
@@ -277,10 +278,7 @@ class UI {
   parseDialogue() {
     const userNameElem = document.querySelector(".client-name_input");
     const dateElem = document.querySelector(".client-date_input");
-    const errorMsg = document.getElementById("error-msg");
 
-    console.log(userNameElem.value);
-    console.log(dateElem.value);
     return { fullName: userNameElem.value, date: dateElem.value };
   }
 
@@ -333,6 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
 
           finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
+          document.querySelector(".client-name_input").value = "";
+          document.querySelector(".client-date_input").value = "";
         };
 
         const user = dialogue.parseDialogue();

@@ -424,7 +424,7 @@ body {
   right: 0;
   height: 100%;
   width: 100%;
-  background: rgba(48, 54, 52, 0.5);
+  background: none;
   visibility: hidden;
   z-index: 60;
   transition: 0.1s;
@@ -435,7 +435,7 @@ body {
 .cart-overlay .cart {
   height: 100%;
   position: relative;
-  background-image: linear-gradient(to top, #ef6461 33.3%, #f5efef 100%);
+  background-image: linear-gradient(to top, #ef6461 0%, #f5efef 100%);
   background-position: center;
   background-size: 100%;
   display: flex;
@@ -801,7 +801,7 @@ body {
   flex-direction: column;
   align-items: flex-end;
   justify-self: flex-end;
-  background: linear-gradient(to bottom, #ef6461 0%, #f5efef 100%);
+  background: linear-gradient(to bottom, #ef6461 0%, #f5efef 33.3%);
   box-shadow: -10px -2px 18px 7px rgba(55, 50, 62, 0.2);
   z-index: 100;
   height: 80vh;
@@ -819,6 +819,7 @@ body {
   align-items: center;
   justify-self: center;
   box-shadow: -10px -18px 24px 6px rgba(55, 50, 62, 0.2);
+  background: linear-gradient(to bottom, #ef6461 0%, #f5efef 100%);
 }
 .cart-overlay .cart-footer.order-ready .cart-footer-main .order-btn,
 .cart-overlay .cart-footer.order-ready .cart-footer-main .order-finalize {
