@@ -1,4 +1,9 @@
+"use strict";
+
+import { cartItemComponent, productComponent } from "./components.js";
 import { User } from "./user.js";
+import { Storage } from "./storage.js";
+import { localePtBr } from "./locale-pt.js";
 
 const cartBtn = document.querySelector(".show-cart");
 const gallery = document.querySelector(".gallery");
@@ -62,6 +67,7 @@ class Products {
 
 class UI {
   products = [];
+  total = 0;
 
   constructor(category) {
     this.loadProducts(category);
@@ -103,25 +109,9 @@ class UI {
   }
 
   displayProducts() {
-    let result = "";
-    // this.products = products;
-
-    this.products.forEach((prod) => {
-      result += `
-        <div class="gallery-pic">
-          <p>${prod.title}</p>
-          <span>${prod.price}Mt</span>
-          <img
-            src=${prod.image}
-          />
-          <button class="checkout" data-id=${prod.id}>
-            Order <i class="fas fa-shopping-cart"></i>
-          </button>
-        </div>
-      `;
-    });
-    // Storage.saveProducts(this.products);
-    gallery.innerHTML = result;
+    let components = "";
+    this.products.forEach((prod) => (components += productComponent(prod)));
+    gallery.innerHTML = components;
   }
 
   updateCategories() {
@@ -155,7 +145,6 @@ class UI {
       btn.addEventListener("click", (e) => {
         e.target.innerText = "In Cart";
         e.target.disabled = true;
-        console.log(e.target);
 
         const cartItem = { ...Storage.getProduct(id), amount: 1 };
         cart = [...cart, cartItem];
@@ -175,6 +164,7 @@ class UI {
       autoClose: true,
       timepicker: true,
       timeFormat: "hh:mm AA",
+      locale: localePtBr,
     });
   }
 
@@ -182,27 +172,7 @@ class UI {
     const div = document.createElement("div");
     div.classList.add("cart-item");
 
-    div.innerHTML = `
-      <img
-        src=${item.image}
-        alt=""
-      />
-      <div class='wrapper'>
-        <div>
-          <h4>${item.title}</h4>
-        <h5 class='mobile'>MT ${item.price}</h5>
-      </div>
-      <div class='cotrls'>
-        <h5>MT ${item.price}</h5>
-        <div class='cotrls-amounts'>
-          <i class="fas fa-chevron-up" data-id=${item.id}></i>
-          <p class="item-amount">${item.amount}</p>
-          <i class="fas fa-chevron-down" data-id=${item.id}></i>
-        </div>
-      </div>
-      </div>
-      <a href="#" class="remove-item remove" data-id=${item.id}><i class="fas fa-times-circle"></i></a>
-    `;
+    div.innerHTML = cartItemComponent(item);
 
     cartContent.appendChild(div);
     this.checkCart();
@@ -275,8 +245,39 @@ class UI {
     );
     const itemsTotal = cart.reduce((total, item) => total + item.amount, 0);
 
+    this.total = Number(tempTotal.toFixed(2));
     cartTotal.innerText = Number(tempTotal.toFixed(2));
     cartItems.innerText = itemsTotal;
+  }
+
+  openDialogue() {
+    const modal = document.querySelector(".modal");
+    const modalClose = document.querySelector(".close");
+    const finalize = document.querySelector(".order-finalize");
+
+    sideBarFooter.classList.add("order-ready");
+    modal.classList.remove("hidden");
+    modalClose.classList.remove("hidden");
+    orderBtn.classList.add("clicked");
+    finalize.classList.add("clicked");
+
+    modalClose.addEventListener("click", () => {
+      sideBarFooter.classList.remove("order-ready");
+      modal.classList.add("hidden");
+      modalClose.classList.add("hidden");
+      finalize.classList.remove("clicked");
+      orderBtn.classList.remove("clicked");
+    });
+
+    return this;
+  }
+
+  setTotal(total) {
+    this.total = total;
+  }
+
+  getTotal() {
+    return this.total;
   }
 
   hideCart() {
@@ -292,51 +293,13 @@ class UI {
   }
 }
 
-class Storage {
-  static saveProducts(products) {
-    localStorage.setItem("products", JSON.stringify(products));
-  }
-
-  static getProduct(id) {
-    let products = JSON.parse(localStorage.getItem("products"));
-    return products.find((product) => product.id === id);
-  }
-
-  static saveCart(cart) {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }
-
-  static getCart() {
-    return localStorage.getItem("cart")
-      ? JSON.parse(localStorage.getItem("cart"))
-      : [];
-  }
-}
-
 document.addEventListener("DOMContentLoaded", () => {
-  new UI(currentTab.dataset.category);
+  const uiManager = new UI(currentTab.dataset.category);
+  // const user = null;
 
   orderBtn.addEventListener("click", () => {
-    const setOrder = () => {
-      let order = `Ola Elka, queria encomendar:%0A%0A`;
-      let total = 0;
-
-      cart.forEach(({ title, amount, price }, index) => {
-        total += amount * price;
-
-        order += `Encomenda: ${
-          index + 1
-        }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
-        `;
-      });
-      let orderFooter = `
-      %0A%0A%0AData do Encomenda: %0ATotal a Pagar: ${total}
-      `;
-
-      // console.log(order);
-      orderBtn.href = `https://wa.me/258854604410?text=${order}${orderFooter}`;
-    };
-
-    if (cart.length >= 1) setOrder();
+    if (cart.length >= 1) {
+      uiManager.openDialogue();
+    }
   });
 });

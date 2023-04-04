@@ -25,6 +25,8 @@ export class User {
     let orderFooter = `
       %0A%0A%0AData do Encomenda: %0ATotal a Pagar: ${total}
       `;
+
+    orderBtn.href = `https://wa.me/258854604410?text=${order}${orderFooter}`;
   }
 
   setFullname(fullname) {

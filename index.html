@@ -20,33 +20,6 @@
   </head>
   <body>
     <div class="container">
-      <div class="modal-container">
-        <div class="modal">
-          <h2>Client Details</h2>
-          <form id="clientForm">
-            <div class="client-name">
-              <label for="name">Encomenda em nome de:</label>
-              <input
-                type="text"
-                id="name"
-                class="client-name_input"
-                placeholder="Exemplo: John Doe"
-              />
-            </div>
-            <div class="client-date">
-              <!-- <label for="date">Introduz-a Data do Encomenda:</label> -->
-              <input
-                type="text"
-                id="date"
-                class="client-date_input"
-                readonly
-                data-language="pt-BR"
-                placeholder="Data do Encomenda"
-              />
-            </div>
-          </form>
-        </div>
-      </div>
       <div class="nav">
         <a href="index.html">Segredos da Elka</a>
         <span class="show-cart">
@@ -64,6 +37,7 @@
           <a href="#" class="tab" data-category="salgados">Salgados</a>
           <a href="#" class="tab" data-category="doces">Doces</a>
           <a href="#" class="tab" data-category="bolos">Bolos</a>
+          <a href="#" class="tab" data-category="sobremesas">Sobremesas</a>
         </div>
       </div>
       <div class="gallery"></div>
@@ -94,18 +68,53 @@
           <p id="empty-msg" class="false">No items in cart...</p>
         </div>
         <div class="cart-footer empty">
-          <h3>
-            Your Total: <br />
+          <button class="close hidden">
+            <i class="fa fa-chevron-down"></i>
+          </button>
+          <div class="modal hidden">
+            <h2>Client Details</h2>
+            <form id="clientForm">
+              <div class="client-name">
+                <label for="name">
+                  <i class="fa fa-user"></i>
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  class="client-name_input"
+                  placeholder="Nome Completo"
+                />
+              </div>
+              <div class="client-date">
+                <!-- <label for="date">Introduz-a Data do Encomenda:</label> -->
+                <label for="date">
+                  <i class="fa fa-calendar"></i>
+                </label>
+                <input
+                  type="text"
+                  id="date"
+                  class="client-date_input"
+                  readonly
+                  placeholder="Data de Encomenda"
+                  data-language="pt-BR"
+                />
+              </div>
+            </form>
+          </div>
+          <div class="cart-footer-main">
+            <h3>
+              Your Total: <br />
 
-            MT <span class="cart-total">0</span>
-          </h3>
-          <a href="#" class="order-btn">Order</a>
+              MT <span class="cart-total">0</span>
+            </h3>
+            <a href="#" class="order-btn">Order</a>
+            <a href="#" class="order-finalize">Mandar</a>
+          </div>
         </div>
       </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.5/air-datepicker.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.3.5/locale/pt-BR.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/contentful@5.0.1/dist/contentful.browser.min.js"></script>
     <!-- <script src="js/user.js" type="module"></script> -->
     <script src="js/cart.js" type="module"></script>
