@@ -315,8 +315,6 @@ document.addEventListener("DOMContentLoaded", () => {
       const dialogue = uiManager.openDialogue();
 
       finalize.addEventListener("click", (e) => {
-        e.preventDefault();
-
         const setOrder = ({ fullName, date }) => {
           let total = 0;
           let orderString = `Ola Elka, queria encomendar:%0A%0A`;
@@ -334,10 +332,7 @@ document.addEventListener("DOMContentLoaded", () => {
           %0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
           `;
 
-          // orderString += orderFooter;
-          // console.log(orderString);
           finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
-          // console.log(finalize.getAttribute("href"));
         };
 
         const user = dialogue.parseDialogue();
