@@ -331,12 +331,12 @@ document.addEventListener("DOMContentLoaded", () => {
           `;
 
           finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
-          document.querySelector(".client-name_input").value = "";
-          document.querySelector(".client-date_input").value = "";
         };
 
         const user = dialogue.parseDialogue();
         setOrder(user);
+        document.querySelector(".client-name_input").value = "";
+        document.querySelector(".client-date_input").value = "";
       });
     }
   });
