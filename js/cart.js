@@ -275,26 +275,26 @@ class UI {
   }
 
   parseDialogue() {
-    const userNameElem = document.getElementById("name");
-    const dateElem = document.getElementById("date");
+    const userNameElem = document.querySelector(".client-name_input");
+    const dateElem = document.querySelector(".client-date_input");
     const errorMsg = document.getElementById("error-msg");
 
     // if (userName === "" || date === "") errorMsg.classList.add("hasError");
     // else errorMsg.classList.remove("hasError");
 
-    userNameElem.addEventListener("change", () => {
-      if (userNameElem.nodeValue === "") errorMsg.classList.add("hasError");
-      else errorMsg.classList.remove("hasError");
+    // userNameElem.addEventListener("change", () => {
+    //   if (userNameElem.nodeValue === "") errorMsg.classList.add("hasError");
+    //   else errorMsg.classList.remove("hasError");
 
-      dateElem.addEventListener("change", () => {
-        if (dateElem.nodeValue === "") errorMsg.classList.add("hasError");
-        else errorMsg.classList.remove("hasError");
-      });
-    });
+    //   dateElem.addEventListener("change", () => {
+    //     if (dateElem.nodeValue === "") errorMsg.classList.add("hasError");
+    //     else errorMsg.classList.remove("hasError");
+    //   });
+    // });
 
-    console.log(userNameElem.nodeValue);
-    console.log(dateElem.nodeValue);
-    return { fullName: userNameElem.nodeValue, date: dateElem.nodeValue };
+    console.log(userNameElem.value);
+    console.log(dateElem.value);
+    return { fullName: userNameElem.value, date: dateElem.value };
   }
 
   setTotal(total) {
@@ -326,11 +326,32 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cart.length >= 1) {
       const dialogue = uiManager.openDialogue();
 
-      const { fullName, date } = dialogue.parseDialogue();
-      const user = new User(fullName, date, cart);
-      const order = user.collectOrders().collectUserInfo();
-      finalize.href = order;
-      console.log(finalize.href);
+      finalize.addEventListener("click", () => {
+        const setOrder = ({ fullName, date }) => {
+          let total = 0;
+          let orderString = `Ola Elka, queria encomendar:%0A%0A`;
+
+          cart.forEach(({ title, amount, price }, index) => {
+            total += amount * price;
+
+            orderString += `Encomenda: ${
+              index + 1
+            }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
+              `;
+          });
+
+          let orderFooter = `
+          %0A%0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
+          `;
+
+          orderString += orderFooter;
+          console.log(orderString);
+          finalize.href = orderString;
+        };
+
+        const user = dialogue.parseDialogue();
+        setOrder(user);
+      });
     }
   });
 });
