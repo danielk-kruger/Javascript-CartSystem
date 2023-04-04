@@ -322,11 +322,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const uiManager = new UI(currentTab.dataset.category);
   // const user = null;
 
-  orderBtn.addEventListener("click", () => {
+  orderBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
     if (cart.length >= 1) {
       const dialogue = uiManager.openDialogue();
 
-      finalize.addEventListener("click", () => {
+      finalize.addEventListener("click", (e) => {
+        e.preventDefault();
+
         const setOrder = ({ fullName, date }) => {
           let total = 0;
           let orderString = `Ola Elka, queria encomendar:%0A%0A`;
@@ -346,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           orderString += orderFooter;
           console.log(orderString);
-          finalize.href = orderString;
+          finalize.href = `https://wa.me/258854604410?text=${orderString}`;
         };
 
         const user = dialogue.parseDialogue();
