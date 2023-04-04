@@ -1,4 +1,4 @@
-const orderBtn = document.querySelector(".order-btn");
+// const orderBtn = document.querySelector(".order-btn");
 
 export class User {
   fullName;
@@ -14,7 +14,7 @@ export class User {
     this.orderString = `Ola Elka, queria encomendar:%0A%0A`;
   }
 
-  collectOrders() {
+  collectOrders(orderBtn) {
     // let total = 0;
 
     this.cart.forEach(({ title, amount, price }, index) => {
@@ -25,8 +25,7 @@ export class User {
       }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
         `;
     });
-
-    // return this;
+    orderBtn.href = `https://wa.me/258854604410?text=${this.orderString}`;
   }
 
   collectUserInfo() {
@@ -36,10 +35,6 @@ export class User {
 
     this.orderString += orderFooter;
     return this;
-  }
-
-  order() {
-    orderBtn.href = `https://wa.me/258854604410?text=${this.orderString}`;
   }
 
   setFullname(fullname) {

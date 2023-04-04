@@ -324,13 +324,9 @@ document.addEventListener("DOMContentLoaded", () => {
     if (cart.length >= 1) {
       const dialogue = uiManager.openDialogue();
 
-      const { fullName, date, total } = dialogue.parseDialogue();
+      const { fullName, date } = dialogue.parseDialogue();
       const user = new User(fullName, date, cart);
-      user.collectUserInfo().collectOrders();
-
-      finalize.addEventListener("click", () => {
-        user.order();
-      });
+      user.collectUserInfo().collectOrders(finalize);
     }
   });
 });
