@@ -279,19 +279,6 @@ class UI {
     const dateElem = document.querySelector(".client-date_input");
     const errorMsg = document.getElementById("error-msg");
 
-    // if (userName === "" || date === "") errorMsg.classList.add("hasError");
-    // else errorMsg.classList.remove("hasError");
-
-    // userNameElem.addEventListener("change", () => {
-    //   if (userNameElem.nodeValue === "") errorMsg.classList.add("hasError");
-    //   else errorMsg.classList.remove("hasError");
-
-    //   dateElem.addEventListener("change", () => {
-    //     if (dateElem.nodeValue === "") errorMsg.classList.add("hasError");
-    //     else errorMsg.classList.remove("hasError");
-    //   });
-    // });
-
     console.log(userNameElem.value);
     console.log(dateElem.value);
     return { fullName: userNameElem.value, date: dateElem.value };
@@ -320,7 +307,6 @@ class UI {
 
 document.addEventListener("DOMContentLoaded", () => {
   const uiManager = new UI(currentTab.dataset.category);
-  // const user = null;
 
   orderBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -345,12 +331,13 @@ document.addEventListener("DOMContentLoaded", () => {
           });
 
           let orderFooter = `
-          %0A%0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
+          %0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
           `;
 
-          orderString += orderFooter;
-          console.log(orderString);
-          finalize.href = `https://wa.me/258854604410?text=${orderString}`;
+          // orderString += orderFooter;
+          // console.log(orderString);
+          finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
+          // console.log(finalize.getAttribute("href"));
         };
 
         const user = dialogue.parseDialogue();
