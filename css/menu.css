@@ -996,18 +996,22 @@ body {
 .cart-overlay .cart-footer-main .order-btn {
   transform: translateY(0);
   display: inline-block;
+  pointer-events: all;
 }
 .cart-overlay .cart-footer-main .order-btn.clicked {
   display: none;
   transform: translateY(1000%);
+  pointer-events: none;
 }
 .cart-overlay .cart-footer-main .order-finalize {
   transform: translateY(1000%);
   display: none;
+  pointer-events: none;
 }
 .cart-overlay .cart-footer-main .order-finalize.clicked {
   display: inline-block;
   transform: translateY(0);
+  pointer-events: all;
 }
 
 /*# sourceMappingURL=menu.css.map */

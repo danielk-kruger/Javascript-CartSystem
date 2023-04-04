@@ -326,7 +326,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const { fullName, date } = dialogue.parseDialogue();
       const user = new User(fullName, date, cart);
-      user.collectUserInfo().collectOrders(finalize);
+      user.collectOrders().collectUserInfo(finalize);
     }
   });
 });
