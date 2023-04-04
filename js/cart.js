@@ -1,7 +1,6 @@
 "use strict";
 
 import { cartItemComponent, productComponent } from "./components.js";
-import { User } from "./user.js";
 import { Storage } from "./storage.js";
 import { localePtBr } from "./locale-pt.js";
 
@@ -335,8 +334,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const user = dialogue.parseDialogue();
         setOrder(user);
-        document.querySelector(".client-name_input").value = "";
-        document.querySelector(".client-date_input").value = "";
       });
     }
   });
