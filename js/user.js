@@ -9,7 +9,7 @@ export class User {
 
   constructor(fullName, orderDateTime, cart) {
     this.fullName = fullName;
-    this.orderDateTime = orderDateTime;
+    this.orderDateTime = String(orderDateTime);
     this.cart = cart;
     this.orderString = `Ola Elka, queria encomendar:%0A%0A`;
   }
@@ -28,13 +28,14 @@ export class User {
     return this;
   }
 
-  collectUserInfo(btn) {
+  collectUserInfo() {
     let orderFooter = `
       %0A%0A%0ACliente: ${this.fullName}%0AData do Encomenda: ${this.date} %0ATotal a Pagar: ${this.total}
       `;
 
     this.orderString += orderFooter;
-    btn.href = `https://wa.me/258854604410?text=${this.orderString}`;
+    return this.orderString;
+    // btn.href = `https://wa.me/258854604410?text=${this.orderString}`;
     // return this;
   }
 

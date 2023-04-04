@@ -283,16 +283,18 @@ class UI {
     // else errorMsg.classList.remove("hasError");
 
     userNameElem.addEventListener("change", () => {
-      if (userNameElem.value === "") errorMsg.classList.add("hasError");
+      if (userNameElem.nodeValue === "") errorMsg.classList.add("hasError");
       else errorMsg.classList.remove("hasError");
 
       dateElem.addEventListener("change", () => {
-        if (dateElem.value === "") errorMsg.classList.add("hasError");
+        if (dateElem.nodeValue === "") errorMsg.classList.add("hasError");
         else errorMsg.classList.remove("hasError");
       });
     });
 
-    return { fullName: userNameElem.value, date: dateElem.value };
+    console.log(userNameElem.nodeValue);
+    console.log(dateElem.nodeValue);
+    return { fullName: userNameElem.nodeValue, date: dateElem.nodeValue };
   }
 
   setTotal(total) {
@@ -326,7 +328,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const { fullName, date } = dialogue.parseDialogue();
       const user = new User(fullName, date, cart);
-      user.collectOrders().collectUserInfo(finalize);
+      const order = user.collectOrders().collectUserInfo();
+      finalize.href = order;
+      console.log(finalize.href);
     }
   });
 });
