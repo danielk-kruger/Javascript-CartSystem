@@ -56,12 +56,17 @@ class Products {
         image: fields.image.fields.file.url,
       }));
 
-      if (category.toLowerCase() === "all") return products;
-      return products.filter(
-        (prod) => String(prod.category).toLowerCase() === category.toLowerCase()
-      );
+      const filteredProducts =
+        category.toLowerCase() === "all"
+          ? products
+          : products.filter(
+              (prod) => prod.category.toLowerCase() === category.toLowerCase()
+            );
+
+      return filteredProducts;
     } catch (err) {
-      console.log(err);
+      console.error(err);
+      return [];
     }
   }
 }
@@ -116,23 +121,24 @@ class UI {
   }
 
   updateCategories() {
+    const handleTabClick = (event) => {
+      event.preventDefault();
+
+      currentTab.classList.remove("active");
+      event.target.classList.add("active");
+      currentTab = event.target;
+
+      this.loadProducts(event.target.dataset.category);
+    };
+
     tabs.forEach((tab) => {
-      tab.addEventListener("click", (event) => {
-        event.preventDefault();
-
-        currentTab.classList.remove("active");
-        event.target.classList.add("active");
-        currentTab = event.target;
-
-        this.loadProducts(event.target.dataset.category);
-      });
+      tab.addEventListener("click", handleTabClick.bind(this));
     });
   }
 
-  // When Order buttons are clicked send the data to the shopping cart
   getOrderButtons() {
-    const btns = [...document.querySelectorAll(".checkout")];
-    buttonsDom = btns;
+    buttonsDom = [...document.querySelectorAll(".checkout")];
+    // buttonsDom = btns;
 
     buttonsDom.forEach((btn) => {
       const { id } = btn.dataset;
@@ -262,14 +268,18 @@ class UI {
     finalize.classList.add("clicked");
     cartSideBar.style.overflowY = "hidden";
 
-    modalClose.addEventListener("click", () => {
+    modalClose.addEventListener("click", handleCloseModal);
+
+    function handleCloseModal() {
       sideBarFooter.classList.remove("order-ready");
       modal.classList.add("hidden");
       modalClose.classList.add("hidden");
       finalize.classList.remove("clicked");
       orderBtn.classList.remove("clicked");
       cartSideBar.style.overflowY = "scroll";
-    });
+
+      modalClose.removeEventListener("click", handleCloseModal);
+    }
 
     return this;
   }
@@ -305,36 +315,36 @@ class UI {
 document.addEventListener("DOMContentLoaded", () => {
   const uiManager = new UI(currentTab.dataset.category);
 
-  orderBtn.addEventListener("click", (e) => {
+  orderBtn.addEventListener("click", async (e) => {
     e.preventDefault();
 
-    if (cart.length >= 1) {
-      const dialogue = uiManager.openDialogue();
+    if (cart.length < 1) return;
 
-      finalize.addEventListener("click", (e) => {
-        const setOrder = ({ fullName, date }) => {
-          let total = 0;
-          let orderString = `Ola Elka, queria encomendar:%0A%0A`;
+    const dialogue = uiManager.openDialogue();
 
-          cart.forEach(({ title, amount, price }, index) => {
-            total += amount * price;
+    finalize.addEventListener("click", (e) => {
+      const setOrder = ({ fullName, date }) => {
+        let total = 0;
+        let orderString = `Ola Elka, queria encomendar:%0A%0A`;
 
-            orderString += `Encomenda: ${
-              index + 1
-            }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
+        cart.forEach(({ title, amount, price }, index) => {
+          total += amount * price;
+
+          orderString += `Encomenda: ${
+            index + 1
+          }%0AProduto: ${title}%0AQuantidade: ${amount} dúzias%0APreço: ${price} por dúzia%0A-------------------------------
               `;
-          });
+        });
 
-          let orderFooter = `
+        let orderFooter = `
           %0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
           `;
 
-          finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
-        };
+        finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
+      };
 
-        const user = dialogue.parseDialogue();
-        setOrder(user);
-      });
-    }
+      const user = dialogue.parseDialogue();
+      setOrder(user);
+    });
   });
 });

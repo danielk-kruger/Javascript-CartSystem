@@ -451,6 +451,23 @@ body {
 .cart-overlay .cart.visible-cart {
   right: 0px;
 }
+.cart-overlay .cart.visible-cart .cart-footer {
+  transform: translateY(65vh);
+}
+.cart-overlay .cart.visible-cart .cart-footer.order-ready {
+  transform: translateY(0);
+  padding: 4rem 0rem 2rem;
+  justify-content: space-between;
+  align-items: center;
+  justify-self: center;
+  box-shadow: -10px -18px 24px 6px rgba(55, 50, 62, 0.2);
+  background: linear-gradient(to bottom, #ef6461 0%, #f5efef 100%);
+}
+.cart-overlay .cart.visible-cart .cart-footer.order-ready .cart-footer-main .order-btn,
+.cart-overlay .cart.visible-cart .cart-footer.order-ready .cart-footer-main .order-finalize {
+  background: #ef6461;
+  color: #ece8ef;
+}
 @media only screen and (max-width: 1400px) {
   .cart-overlay .cart {
     width: 40%;
@@ -806,25 +823,11 @@ body {
   z-index: 100;
   height: 80vh;
   overflow: hidden;
-  transform: translateY(65vh);
+  transform: translateY(85vh);
   transition: all 0.45s ease;
 }
 .cart-overlay .cart-footer.empty {
   display: none;
-}
-.cart-overlay .cart-footer.order-ready {
-  transform: translateY(0);
-  padding: 4rem 0rem 2rem;
-  justify-content: space-between;
-  align-items: center;
-  justify-self: center;
-  box-shadow: -10px -18px 24px 6px rgba(55, 50, 62, 0.2);
-  background: linear-gradient(to bottom, #ef6461 0%, #f5efef 100%);
-}
-.cart-overlay .cart-footer.order-ready .cart-footer-main .order-btn,
-.cart-overlay .cart-footer.order-ready .cart-footer-main .order-finalize {
-  background: #ef6461;
-  color: #ece8ef;
 }
 .cart-overlay .cart-footer button.close {
   position: absolute;
