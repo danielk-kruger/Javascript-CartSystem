@@ -337,7 +337,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         let orderFooter = `
-          %0A%0ACliente: ${fullName}%0AData do Encomenda: ${date} %0ATotal a Pagar: ${total}
+          %0A%0ACliente: ${fullName}%0AData de Levantamento: ${date} %0ATotal a Pagar: ${total}
           `;
 
         finalize.href = `https://wa.me/258854604410?text=${orderString}${orderFooter}`;
