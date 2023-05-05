@@ -60,6 +60,13 @@ body {
       color: $secondary-color;
       padding: 0.5rem;
       display: block;
+
+      img {
+        height: 200px;
+        width: 200px;
+        object-fit: cover;
+        object-position: center;
+      }
     }
 
     .show-cart {
@@ -121,8 +128,6 @@ body {
       }
     }
   }
-
-  // overflow: hidden;
 
   .categories {
     width: 100%;

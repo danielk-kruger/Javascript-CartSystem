@@ -126,6 +126,12 @@ body {
   padding: 0.5rem;
   display: block;
 }
+.container .nav a img {
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+  object-position: center;
+}
 .container .nav .show-cart {
   display: block;
   font-size: 2.5rem;
