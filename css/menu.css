@@ -107,10 +107,15 @@ body {
   align-items: center;
   height: auto;
   width: 100%;
-  padding: 1rem 2rem;
+  padding: 1rem 2rem 1rem;
   margin-bottom: 1rem;
+  will-change: height;
+  will-change: padding;
+  transition: all 0.3s ease-in-out;
 }
 .container .nav.sticky {
+  height: 95px;
+  padding: 1rem 2rem 1rem;
   background: #ece8ef;
   z-index: 30;
   margin: 0;
@@ -118,6 +123,7 @@ body {
   box-shadow: 4px 0px 12px rgba(5, 5, 5, 0.15);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
+  transition: all 0.3s ease-in-out;
 }
 .container .nav a {
   font-family: "Comforter Brush", cursive;
@@ -127,11 +133,13 @@ body {
   display: block;
 }
 .container .nav a img {
+  padding: 10px 0rem 0rem;
   height: 80px;
   width: 80px;
   object-fit: contain;
   object-position: center;
   filter: drop-shadow(2px 3px 20px rgba(6, 6, 6, 0.2));
+  -webkit-filter: drop-shadow(2px 3px 20px rgba(6, 6, 6, 0.2));
 }
 .container .nav .show-cart {
   display: block;
