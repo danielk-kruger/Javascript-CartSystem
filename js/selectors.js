@@ -1,0 +1,14 @@
+export const cartBtn = document.querySelector(".show-cart");
+export const gallery = document.querySelector(".gallery");
+export const closeCartBtn = document.querySelector(".cart-close");
+export const overlay = document.querySelector(".cart-overlay");
+export const cartSideBar = document.querySelector(".cart");
+export const clearCartBtn = document.querySelector(".clear-cart");
+export const cartTotal = document.querySelector(".cart-total");
+export const cartItems = document.querySelector(".cart-items");
+export const cartContent = document.querySelector(".cart-content");
+export const sideBarFooter = document.querySelector(".cart-footer");
+export const orderBtn = document.querySelector(".order-btn");
+export const finalize = document.querySelector(".order-finalize");
+export const tabs = [...document.querySelectorAll(".tab")];
+export const clientForm = document.getElementById("clientForm");

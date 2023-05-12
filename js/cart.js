@@ -138,7 +138,6 @@ class UI {
 
   getOrderButtons() {
     buttonsDom = [...document.querySelectorAll(".checkout")];
-    // buttonsDom = btns;
 
     buttonsDom.forEach((btn) => {
       const { id } = btn.dataset;

@@ -37,11 +37,11 @@ body {
     position: fixed;
     top: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: auto;
     width: 100%;
-    padding: 1rem 0rem;
+    padding: 1rem 2rem 0rem;
     margin-bottom: 1rem;
 
     &.sticky {
@@ -60,12 +60,20 @@ body {
       color: $secondary-color;
       padding: 0.5rem;
       display: block;
+
+      img {
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
+        object-position: center;
+      }
     }
 
     .show-cart {
       display: block;
       font-size: 2.5rem;
       cursor: pointer;
+      padding-bottom: 0.5rem;
       position: relative;
 
       .cart-items {
@@ -84,25 +92,27 @@ body {
   }
 
   .content {
-    margin-top: 3.625rem;
+    margin-top: 2rem;
 
     h3 {
-      font-family: $poppins;
-      color: $black;
-      font-size: 2.5rem;
+      font-family: $comforter-brush;
+      font-size: 4rem;
+      color: $secondary-color;
+      padding: 0.5rem;
+      display: block;
       position: relative;
       margin-bottom: 2rem;
-      padding-bottom: 1rem;
+      padding-bottom: 0.7rem;
 
       @include lg-screen {
-        font-size: 2.3rem;
+        font-size: 3rem;
       }
 
       &::after {
         @include customUnderline($secondary-color, 50%, 5px);
 
         @include lg-screen {
-          width: 40%;
+          width: 50%;
         }
       }
     }
