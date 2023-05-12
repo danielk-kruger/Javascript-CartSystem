@@ -37,11 +37,11 @@ body {
     position: fixed;
     top: 0;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: auto;
     width: 100%;
-    padding: 1rem 0rem;
+    padding: 1rem 2rem;
     margin-bottom: 1rem;
 
     &.sticky {
@@ -58,20 +58,23 @@ body {
       font-family: $comforter-brush;
       font-size: 2.5rem;
       color: $secondary-color;
-      padding: 0.5rem;
+      padding: 0rem 0.5rem;
+      // margin-bottom:
       display: block;
 
       img {
-        height: 200px;
-        width: 200px;
-        object-fit: cover;
+        height: 80px;
+        width: 80px;
+        object-fit: contain;
         object-position: center;
+        filter: drop-shadow(2px 3px 20px rgba(6, 6, 6, 0.2));
       }
     }
 
     .show-cart {
       display: block;
       font-size: 2.5rem;
+      padding-bottom: 0.5rem;
       cursor: pointer;
       position: relative;
 
@@ -91,25 +94,27 @@ body {
   }
 
   .content {
-    margin-top: 3.625rem;
+    margin-top: 2rem;
 
     h3 {
-      font-family: $poppins;
-      color: $black;
+      font-family: $comforter-brush;
       font-size: 2.5rem;
+      color: $secondary-color;
+      padding: 0rem 0.5rem;
+      display: block;
       position: relative;
       margin-bottom: 2rem;
-      padding-bottom: 1rem;
+      padding-bottom: 0.5rem;
 
       @include lg-screen {
-        font-size: 2.3rem;
+        font-size: 3rem;
       }
 
       &::after {
         @include customUnderline($secondary-color, 50%, 5px);
 
         @include lg-screen {
-          width: 40%;
+          width: 50%;
         }
       }
     }
@@ -138,7 +143,7 @@ body {
     scrollbar-width: none;
 
     @include xs-screen {
-      padding: 2rem 0rem 2rem 1rem;
+      padding: 3rem 0rem 2rem 1rem;
     }
 
     &::-webkit-scrollbar {
@@ -189,7 +194,7 @@ body {
     grid-template-columns: repeat(3, 1fr);
     grid-row-gap: 2.25rem;
     grid-column-gap: 2.25rem;
-    margin-top: 10rem;
+    // margin-top: 0rem;
 
     @include lg-screen {
       grid-template-columns: repeat(3, 1fr);
@@ -205,7 +210,7 @@ body {
 
     @include sm-screen {
       grid-template-columns: 1fr;
-      margin-top: 2rem;
+      margin-top: 1rem;
       grid-column-gap: 1.625rem;
     }
 
